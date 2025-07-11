@@ -5,6 +5,9 @@ export default function Home() {
       <main className="flex flex-col gap-[48px] items-center text-center max-w-5xl mx-auto">
         {/* Main Headline */}
         <div className="flex flex-col gap-4 items-center">
+          <span className="inline-block rounded-full bg-gradient-to-r from-yellow-400 to-red-500 text-white px-4 py-1 text-xs font-semibold tracking-wide uppercase -mb-3">
+            Coming Soon
+          </span>
           <h1 className="text-xl sm:text-2xl font-bold tracking-relaxed bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
             CorePump.meme
           </h1>
