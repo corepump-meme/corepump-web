@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -61,7 +59,7 @@ export default function Home() {
               <div className="flex flex-col gap-2 max-w-[200px] p-4 rounded-lg bg-gradient-to-r from-red-50 to-gray-50 dark:from-red-900/20 dark:to-gray-900/20 border border-red-200 dark:border-red-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <div className="text-2xl hover:scale-110 transition-transform duration-200">💸</div>
                 <h3 className="font-semibold">Rekt</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">You're left with a worthless token and a lesson learned.</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">You&apos;re left with a worthless token and a lesson learned.</p>
               </div>
             </div>
           </div>
@@ -80,14 +78,14 @@ export default function Home() {
               <div className="text-3xl hover:scale-110 transition-transform duration-200">🔒</div>
               <h3 className="text-xl font-bold">Permanent Anti-Rug Liquidity</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                When a coin graduates to a DEX, its liquidity is automatically locked and burned forever. It's programmatically impossible for creators to pull it. Period.
+                When a coin graduates to a DEX, its liquidity is automatically locked and burned forever. It&apos;s programmatically impossible for creators to pull it. Period.
               </p>
             </div>
             <div className="flex flex-col gap-4 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
               <div className="text-3xl hover:scale-110 transition-transform duration-200">💎</div>
               <h3 className="text-xl font-bold">Diamond Hand Vesting</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Creators and early whales can't dump on you. Their tokens are locked and only release when the project hits key success milestones. We reward building, not bailing.
+                Creators and early whales can&apos;t dump on you. Their tokens are locked and only release when the project hits key success milestones. We reward building, not bailing.
               </p>
             </div>
             <div className="flex flex-col gap-4 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
@@ -104,7 +102,7 @@ export default function Home() {
         <div className="flex flex-col gap-6 w-full max-w-md">
           <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Be First in Line.</h2>
           <p className="text-gray-600 dark:text-gray-300">
-            The future of meme coins on Core is about to launch. Don't miss out on the first wave of fair, safe, and explosive projects.
+            The future of meme coins on Core is about to launch. Don&apos;t miss out on the first wave of fair, safe, and explosive projects.
           </p>
           <div className="flex flex-col sm:flex-row gap-2">
             <input
