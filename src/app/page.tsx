@@ -1,4 +1,5 @@
 import { FaTelegram } from "react-icons/fa";
+import NotifyForm from "./components/NotifyForm";
 
 export default function Home() {
   return (
@@ -109,19 +110,7 @@ export default function Home() {
           <p className="text-gray-600 dark:text-gray-300">
             The future of meme coins on Core is about to launch. Don&apos;t miss out on the first wave of fair, safe, and explosive projects.
           </p>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email address..."
-              className="flex-1 px-4 py-3 rounded-full border border-black/[.08] dark:border-white/[.145] bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="rounded-full border border-solid border-transparent transition-all duration-300 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 hover:shadow-lg hover:shadow-orange-500/25 hover:scale-105 font-medium text-sm sm:text-base h-12 px-6 whitespace-nowrap">
-              NOTIFY ME
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            We respect your privacy. No spam, just launch alerts and early access info.
-          </p>
+          <NotifyForm />
         </div>
 
         {/* Community Section */}
