@@ -26,6 +26,7 @@ export default function NotifyForm() {
         setMessage({ type: 'error', text: result.error || 'Something went wrong. Please try again.' });
       }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setMessage({ type: 'error', text: 'Something went wrong. Please try again.' });
     } finally {
       setIsLoading(false);
