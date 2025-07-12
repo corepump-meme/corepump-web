@@ -1,3 +1,5 @@
+import { FaTelegram } from "react-icons/fa";
+
 export default function Home() {
   return (
     <div className="min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -133,21 +135,21 @@ export default function Home() {
           </p>
           <div className="flex gap-4 items-center flex-col sm:flex-row">
             <a
-              className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-all duration-300 flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md hover:-translate-y-0.5 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
+              className="group rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-all duration-300 flex items-center justify-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md hover:-translate-y-0.5 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
               href="https://t.me/@corepump_meme"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="hover:scale-110 transition-transform duration-200">📱</span> Join our Telegram
+              <FaTelegram className="group-hover:scale-110 transition-transform duration-200" /> Join our Telegram
             </a>
-            <a
+            {/* <a
               className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-all duration-300 flex items-center justify-center hover:bg-sky-50 dark:hover:bg-sky-900/20 hover:border-sky-200 dark:hover:border-sky-800 hover:shadow-md hover:-translate-y-0.5 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
               href="#"
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className="hover:scale-110 transition-transform duration-200">🐦</span> Follow us on X
-            </a>
+            </a> */}
           </div>
         </div>
       </main>
