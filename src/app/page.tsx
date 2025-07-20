@@ -18,7 +18,7 @@ export default function Home() {
             Stop Getting Rugged.<br />Start Pumping.
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
-            The first fair launchpad on Core Chain where liquidity is burned, whales are locked, and communities can actually win.
+            The evolution of the fair launch is here. A launchpad on Core Chain with an on-chain defense system against dumps, monopolies, and rugs.
           </p>
         </div>
 
@@ -73,32 +73,98 @@ export default function Home() {
           <p className="text-lg font-medium text-center">The game has been rigged. Until now.</p>
         </div>
 
-        {/* Features Section */}
+        {/* Architecture Section */}
         <div className="flex flex-col gap-8 w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">The CorePump™ Guarantee</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto">
-            We built the rules of fair play directly into the code. Every single token launched on CorePump.meme comes with:
-          </p>
+          <div className="flex flex-col gap-4 items-center">
+            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">The CorePump Architecture</h2>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">A 4-Layer Defense</h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl text-center">
+              We built a fortress, not a doorway. Every project launched on CorePump is protected by four layers of on-chain security, enforced by code.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Layer 1 */}
+            <div className="flex flex-col gap-4 p-6 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl hover:scale-110 transition-transform duration-200">🛡️</div>
+                <div>
+                  <h4 className="text-lg font-bold text-blue-700 dark:text-blue-300">Layer 1: The Unruggable LP</h4>
+                  <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">(The Foundation)</p>
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300">
+                At the moment of graduation, liquidity is locked in the DEX and the LP tokens are burned forever. This isn&apos;t a promise; it&apos;s an immutable on-chain event. The rug is physically impossible to pull.
+              </p>
+            </div>
+
+            {/* Layer 2 */}
+            <div className="flex flex-col gap-4 p-6 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl hover:scale-110 transition-transform duration-200">⚡</div>
+                <div>
+                  <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300">Layer 2: Automated Whale Vesting</h4>
+                  <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">(The Anti-Dump Shield)</p>
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300">
+                At launch, any wallet holding over 1% of the supply is automatically placed into the same Milestone-Based Vesting contract as the founder. The biggest holders are locked in for the long haul. No exceptions.
+              </p>
+            </div>
+
+            {/* Layer 3 */}
+            <div className="flex flex-col gap-4 p-6 rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl hover:scale-110 transition-transform duration-200">🎯</div>
+                <div>
+                  <h4 className="text-lg font-bold text-green-700 dark:text-green-300">Layer 3: The Fair Sale Cooldown</h4>
+                  <p className="text-sm text-green-600 dark:text-green-400 font-medium">(The Anti-Crash Mechanism)</p>
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300">
+                Whales can&apos;t crash the market. Our smart contract enforces a daily sale allowance (0.5% of total supply) on the largest wallets. This prevents catastrophic dumps while allowing for healthy, gradual profit-taking that the market can absorb.
+              </p>
+            </div>
+
+            {/* Layer 4 */}
+            <div className="flex flex-col gap-4 p-6 rounded-lg bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border border-orange-200 dark:border-orange-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl hover:scale-110 transition-transform duration-200">🔒</div>
+                <div>
+                  <h4 className="text-lg font-bold text-orange-700 dark:text-orange-300">Layer 4: The Anti-Monopoly Cap</h4>
+                  <p className="text-sm text-orange-600 dark:text-orange-400 font-medium">(The Decentralization Guarantee)</p>
+                </div>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300">
+                From the very first block. No single wallet can purchase more than 4% of the supply during the bonding curve launch. This guarantees a wider, healthier distribution of holders from day one.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Simplified Features Section */}
+        <div className="flex flex-col gap-8 w-full">
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">Why CorePump?</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col gap-4 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-              <div className="text-3xl hover:scale-110 transition-transform duration-200">🔒</div>
-              <h3 className="text-xl font-bold">Permanent Anti-Rug Liquidity</h3>
+              <div className="text-3xl hover:scale-110 transition-transform duration-200">🔐</div>
+              <h3 className="text-xl font-bold">Unruggable by Design</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                When a coin graduates to a DEX, its liquidity is automatically locked and burned forever. It&apos;s programmatically impossible for creators to pull it. Period.
+                Built-in protections that make exit scams impossible. Your investment is safe from day one.
               </p>
             </div>
             <div className="flex flex-col gap-4 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-              <div className="text-3xl hover:scale-110 transition-transform duration-200">💎</div>
-              <h3 className="text-xl font-bold">Diamond Hand Vesting</h3>
+              <div className="text-3xl hover:scale-110 transition-transform duration-200">⚖️</div>
+              <h3 className="text-xl font-bold">Truly Fair Launches</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Creators and early whales can&apos;t dump on you. Their tokens are locked and only release when the project hits key success milestones. We reward building, not bailing.
+                No presales, no insider allocations. Everyone starts from the same bonding curve.
               </p>
             </div>
             <div className="flex flex-col gap-4 p-6 rounded-lg border border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
               <div className="text-3xl hover:scale-110 transition-transform duration-200">🚀</div>
-              <h3 className="text-xl font-bold">True Community Launches</h3>
+              <h3 className="text-xl font-bold">Built for Core Chain</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                No presales, no insider allocations. Everyone buys from the same bonding curve, from the very first dollar. This is the home of the next true 100x gem on Core.
+                Optimized for Core&apos;s fast, cheap transactions. The perfect home for the next 100x gem.
               </p>
             </div>
           </div>
