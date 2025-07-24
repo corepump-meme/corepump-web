@@ -15,10 +15,8 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
       className={`flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 ${className}`}
       aria-label="CorePump Home"
     >
-      <div className="w-8 h-8 bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 rounded-lg flex items-center justify-center">
-        <span className="text-white font-bold text-lg">C</span>
-      </div>
-      <span className="text-xl font-bold text-gray-900">
+      <Image src="/logo.png" alt="CorePump Logo" width={32} height={32} className='rounded-full' />
+      <span className="text-xl font-bold text-gray-900 dark:text-white">
         Core<span className="text-core-orange-500">Pump</span>
       </span>
     </Link>

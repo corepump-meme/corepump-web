@@ -31,12 +31,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const baseClasses = 'btn-base focus-ring';
 
-    const variantClasses = {
-      primary: 'bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 text-white shadow-sm hover:shadow-lg',
-      secondary: 'bg-transparent text-core-orange-500 border-2 border-core-orange-500 hover:bg-core-orange-500 hover:text-white',
-      ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 hover:text-gray-900',
-      danger: 'bg-error-500 text-white hover:bg-error-600 shadow-sm hover:shadow-lg'
-    };
+  const variantClasses = {
+    primary: 'bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 text-white hover:shadow-core-lg hover:-translate-y-0.5 dark:shadow-core-dark',
+    secondary: 'bg-transparent text-core-orange-500 border-2 border-core-orange-500 hover:bg-core-orange-500 hover:text-white dark:text-core-orange-500 dark:border-core-orange-500',
+    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-dark-surface-hover dark:hover:text-white',
+    danger: 'bg-error-500 text-white hover:bg-error-600 dark:bg-dark-error dark:hover:bg-error-600',
+  };
 
     const sizeClasses = {
       sm: 'px-4 py-2 text-sm',

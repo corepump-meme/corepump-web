@@ -12,6 +12,7 @@ const navigationItems = [
   { href: '/', label: 'Home' },
   { href: '/launch', label: 'Launch' },
   { href: '/rankings', label: 'Rankings' },
+  { href: '/about', label: 'About' },
 ];
 
 const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
@@ -37,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
             ${
               isActive(item.href)
                 ? 'text-core-orange-500 bg-core-orange-500/10'
-                : 'text-gray-700'
+                : 'text-gray-700 dark:text-gray-300'
             }
           `}
         >

@@ -38,9 +38,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const baseInputClasses = 'input-base py-[1rem]';
     
     const variantClasses = {
-      default: 'border-gray-300 focus:border-core-orange-500 focus:ring-core-orange-500/10',
-      error: 'border-error-500 focus:border-error-500 focus:ring-error-500/10',
-      success: 'border-success-500 focus:border-success-500 focus:ring-success-500/10'
+      default: 'border-gray-300 focus:border-core-orange-500 focus:ring-core-orange-500/10 dark:border-dark-border-primary dark:bg-dark-surface dark:text-dark-text-primary dark:focus:border-core-orange-500',
+      error: 'border-error-500 focus:border-error-500 focus:ring-error-500/10 dark:border-dark-error dark:bg-dark-surface dark:text-dark-text-primary',
+      success: 'border-success-500 focus:border-success-500 focus:ring-success-500/10 dark:border-dark-success dark:bg-dark-surface dark:text-dark-text-primary'
     };
 
     const actualVariant = error ? 'error' : variant;
@@ -60,7 +60,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={`space-y-2 ${fullWidth ? 'w-full' : ''}`}>
         {label && (
-          <label htmlFor={inputId} className="text-label text-gray-700">
+          <label htmlFor={inputId} className="text-label text-gray-700 dark:text-dark-text-secondary">
             {label}
           </label>
         )}

@@ -5,6 +5,7 @@ import Logo from './Logo';
 import Navigation from './Navigation';
 import MobileMenu from './MobileMenu';
 import { WalletConnectButton } from '../../defi/WalletConnectButton';
+import { ThemeToggle } from '../../ui/ThemeToggle';
 import { useWallet } from '../../../hooks/useWallet';
 
 export interface HeaderProps {
@@ -33,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   };
 
   return (
-    <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 ${className}`}>
+    <header className={`sticky top-0 z-30 bg-surface border-b border-border-primary backdrop-blur-sm transition-colors duration-200 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
           {/* Left side - Logo and Navigation */}
@@ -42,8 +43,11 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <Navigation />
           </div>
 
-          {/* Right side - Mobile Menu and Wallet */}
+          {/* Right side - Theme Toggle, Mobile Menu and Wallet */}
           <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              <ThemeToggle showLabels={false} />
+            </div>
             <MobileMenu />
             <WalletConnectButton
               isConnected={isConnected}
