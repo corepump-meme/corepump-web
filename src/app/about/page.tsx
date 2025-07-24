@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaTelegram } from "react-icons/fa";
 import NotifyForm from "@/app/components/NotifyForm";
 
@@ -20,6 +21,11 @@ export default function CorePump() {
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
             The evolution of the fair launch is here. A launchpad on Core Chain with an on-chain defense system against dumps, monopolies, and rugs.
           </p>
+          <div className="flex items-center">
+            <span className="text-sm text-gray-500 dark:text-gray-400 mr-2">Powered by:</span>
+            <Image src="/core.png" alt="Core Logo" width={100} height={30} className="inline-block dark:hidden object-contain" />
+            <Image src="/core-light.png" alt="Core Logo" width={100} height={30} className="hidden dark:inline-block object-contain" />
+          </div>
         </div>
 
         {/* Problem Section */}

@@ -13,8 +13,7 @@ export default function Home() {
             <Image src="/core-light.png" alt="Core Logo" width={271} height={70} className="hidden dark:inline-block object-contain" />
           </h1>
           <p className="text-xl text-gray-600 dark:text-dark-text-secondary max-w-3xl mx-auto mb-8 transition-colors duration-200">
-            The first fair launchpad on Core Chain where liquidity is burned, whales are locked, 
-            and communities can actually win. Stop getting rugged. Start pumping.
+            A launchpad on Core Chain with an on-chain defense system against dumps, monopolies, and rugs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
