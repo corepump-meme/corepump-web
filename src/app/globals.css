@@ -243,6 +243,15 @@ body {
   line-height: 1.2;
 }
 
+/* Layout utilities */
+.h-18 {
+  height: 4.5rem; /* 72px */
+}
+
+.pt-18 {
+  padding-top: 4.5rem; /* 72px */
+}
+
 /* Component base styles */
 .card {
   background: var(--white);
@@ -316,4 +325,19 @@ body {
 
 .input-base::placeholder {
   color: var(--gray-400);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
