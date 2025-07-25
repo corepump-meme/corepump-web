@@ -101,8 +101,8 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
           >
             {isCompact ? (
               <>
-                <span className="hidden md:inline">Disconnect</span>
-                <FiPower className="md:hidden inline h-4 w-4" />
+                <span className="hidden lg:inline">Disconnect</span>
+                <FiPower className="lg:hidden inline h-4 w-4" />
 
               </>
             ) : (
