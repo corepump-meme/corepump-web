@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
   };
 
   return (
-    <nav className={`hidden md:flex items-center gap-8 ${className}`} role="navigation">
+    <nav className={`hidden md:flex items-center gap-1 lg:gap-4 ${className}`} role="navigation">
       {navigationItems.map((item) => (
         <Link
           key={item.href}
