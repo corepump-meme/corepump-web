@@ -14,6 +14,7 @@ const navigationItems = [
   { href: '/', label: 'Home' },
   { href: '/launch', label: 'Launch' },
   { href: '/rankings', label: 'Rankings' },
+  { href: '/about', label: 'About' },
 ];
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
