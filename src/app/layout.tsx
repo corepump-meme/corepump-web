@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Web3Provider, ApolloProvider, ThemeProvider } from "@/components/providers";
+import { Web3Provider, ApolloProvider } from "@/components/providers";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -29,16 +29,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background-primary text-text-primary transition-colors duration-200`}
       >
-        <ThemeProvider>
-          <ApolloProvider>
-            <Web3Provider>
-              <Header />
-              <main className="">
-                {children}
-              </main>
-            </Web3Provider>
-          </ApolloProvider>
-        </ThemeProvider>
+        <ApolloProvider>
+          <Web3Provider>
+            <Header />
+            <main className="">
+              {children}
+            </main>
+          </Web3Provider>
+        </ApolloProvider>
       </body>
     </html>
   );
