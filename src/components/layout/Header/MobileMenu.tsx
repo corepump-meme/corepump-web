@@ -72,7 +72,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
         variant="ghost"
         onClick={() => setIsOpen(true)}
         aria-label="Open navigation menu"
-        className="text-gray-700 hover:text-core-orange-500"
+        className="text-gray-700 dark:text-gray-300 hover:text-core-orange-500"
       />
 
       {/* Mobile Menu Overlay */}
@@ -80,23 +80,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-40 animate-fade-in"
+            className="fixed inset-0 bg-black/50 z-[100] animate-fade-in"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
 
           {/* Menu Panel */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 animate-slide-in">
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl z-[101] animate-slide-in">
             {/* Menu Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
               <IconButton
                 icon={FiX}
                 size="md"
                 variant="ghost"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close navigation menu"
-                className="text-gray-700 hover:text-core-orange-500"
+                className="text-gray-700 dark:text-gray-300 hover:text-core-orange-500"
               />
             </div>
 
@@ -114,7 +114,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
                         ${
                           isActive(item.href)
                             ? 'text-core-orange-500 bg-core-orange-500/10'
-                            : 'text-gray-700 hover:text-core-orange-500 hover:bg-core-orange-500/10'
+                            : 'text-gray-700 dark:text-gray-300 hover:text-core-orange-500 hover:bg-core-orange-500/10'
                         }
                       `}
                       onClick={() => setIsOpen(false)}

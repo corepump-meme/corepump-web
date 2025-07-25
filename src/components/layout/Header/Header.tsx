@@ -3,7 +3,7 @@
 import React from 'react';
 import Logo from './Logo';
 import Navigation from './Navigation';
-import MobileMenu from './MobileMenu';
+import MobileMenuButton from './MobileMenuButton';
 import { WalletConnectButton } from '../../defi/WalletConnectButton';
 import { useWallet } from '../../../hooks/useWallet';
 
@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
           {/* Right side - Mobile Menu and Wallet */}
           <div className="flex items-center gap-4">
-            <MobileMenu />
+            <MobileMenuButton />
             <WalletConnectButton
               isConnected={isConnected}
               address={address}

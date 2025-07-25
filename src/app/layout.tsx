@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Web3Provider, ApolloProvider } from "@/components/providers";
-import { Header } from "@/components/layout/Header";
+import { Header, MobileMenuProvider, MobileMenuOverlay } from "@/components/layout/Header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,10 +31,13 @@ export default function RootLayout({
       >
         <ApolloProvider>
           <Web3Provider>
-            <Header />
-            <main className="">
-              {children}
-            </main>
+            <MobileMenuProvider>
+              <Header />
+              <main className="">
+                {children}
+              </main>
+              <MobileMenuOverlay />
+            </MobileMenuProvider>
           </Web3Provider>
         </ApolloProvider>
       </body>
