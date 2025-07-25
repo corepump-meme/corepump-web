@@ -62,16 +62,14 @@ export function TokenControls({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex gap-4 items-center justify-between">
           {/* Search Input */}
-          <div className="relative flex-1 max-w-md">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <FiSearch className="h-5 w-5 text-gray-400" />
-            </div>
+          <div>
             <Input
               type="text"
               placeholder="Search tokens by name or symbol..."
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
               className="pl-10"
+              leftIcon={FiSearch}
             />
           </div>
 
