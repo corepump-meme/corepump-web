@@ -354,42 +354,6 @@ export function TokenLaunchForm() {
             </label>
           </div>
 
-          {/* Form Errors */}
-          {Object.keys(formErrors).length > 0 && (
-            <div className="space-y-2">
-              {Object.entries(formErrors).map(([field, error]) => (
-                <Alert
-                  key={field}
-                  variant="warning"
-                  description={`${field}: ${error}`}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Transaction Status */}
-          {txHash && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h4 className="font-medium text-blue-900 mb-2">Transaction Submitted</h4>
-              <div className="space-y-2 text-sm text-blue-800">
-                <p>Transaction hash: {txHash}</p>
-                {isConfirming && <p>Waiting for confirmation...</p>}
-                {isSuccess && tokenAddress && (
-                  <p>Token created at address: {tokenAddress}</p>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Error Message */}
-          {error && (
-            <Alert
-              variant="error"
-              title="Launch Failed"
-              description={error.message || 'An error occurred while launching the token'}
-            />
-          )}
-
           {/* Wallet Connection */}
           {!isConnected || !canLaunch ? (
             <div className="space-y-6">
@@ -407,7 +371,7 @@ export function TokenLaunchForm() {
                     }
                   </p>
                 </div>
-                <ConnectedWalletButton />
+                <ConnectedWalletButton className="shrink-0" />
               </div>
 
               {!canLaunch && (
@@ -424,12 +388,49 @@ export function TokenLaunchForm() {
               )}
             </div>
           ) : (
-            <SubmitButton 
-              canLaunch={canLaunch}
-              isPending={isPending}
-              isConfirming={isConfirming}
-              isSuccess={isSuccess}
-            />
+            <>
+              {/* Form Errors */}
+              {Object.keys(formErrors).length > 0 && (
+                <div className="space-y-2">
+                  {Object.entries(formErrors).map(([field, error]) => (
+                    <Alert
+                      key={field}
+                      variant="warning"
+                      description={`${field}: ${error}`}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Transaction Status */}
+              {txHash && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-medium text-blue-900 mb-2">Transaction Submitted</h4>
+                  <div className="space-y-2 text-sm text-blue-800">
+                    <p>Transaction hash: {txHash}</p>
+                    {isConfirming && <p>Waiting for confirmation...</p>}
+                    {isSuccess && tokenAddress && (
+                      <p>Token created at address: {tokenAddress}</p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <Alert
+                  variant="error"
+                  title="Launch Failed"
+                  description={error.message || 'An error occurred while launching the token'}
+                />
+              )}
+              <SubmitButton 
+                canLaunch={canLaunch}
+                isPending={isPending}
+                isConfirming={isConfirming}
+                isSuccess={isSuccess}
+              />
+            </>
           )}
         </form>
       </Card>
