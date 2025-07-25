@@ -57,6 +57,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               onConnect={connectWallet}
               onDisconnect={disconnect}
               onCopyAddress={copyAddress}
+              headerMode={true}
             />
           </div>
         </div>

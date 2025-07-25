@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FiCreditCard, FiCheck, FiCopy } from 'react-icons/fi';
+import { FiCreditCard, FiPower, FiCopy } from 'react-icons/fi';
 import { Button } from '../../ui/Button';
 import { IconButton } from '../../ui/IconButton';
 
@@ -14,6 +14,9 @@ export interface WalletConnectButtonProps {
   onCopyAddress?: () => void;
   loading?: boolean;
   className?: string;
+  compact?: boolean;
+  hideBalance?: boolean;
+  headerMode?: boolean;
 }
 
 const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
@@ -24,10 +27,21 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
   onDisconnect,
   onCopyAddress,
   loading = false,
-  className = ''
+  className = '',
+  compact = false,
+  hideBalance = false,
+  headerMode = false
 }) => {
-  const formatAddress = (addr: string) => {
+  // Header mode enables multiple compact features
+  const isCompact = compact || headerMode;
+  const shouldHideBalance = hideBalance || headerMode;
+
+  const formatAddress = (addr: string, isCompactMode: boolean = false) => {
     if (!addr) return '';
+    if (isCompactMode) {
+      // Shorter format for compact mode
+      return `${addr.slice(0, 4)}...${addr.slice(-2)}`;
+    }
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   };
 
@@ -39,12 +53,18 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
   };
 
   if (isConnected && address) {
+    const gapClass = isCompact ? 'gap-2' : 'gap-3';
+    const containerPadding = isCompact ? 'px-2 py-1' : 'px-4 py-2';
+    const statusDotSize = isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2';
+    const textSize = isCompact ? 'text-xs' : 'text-sm';
+    const iconButtonSize = isCompact ? 'sm' : 'sm';
+
     return (
-      <div className={`flex items-center gap-3 ${className}`}>
-        {/* Balance Display */}
-        {balance && (
+      <div className={`flex items-center ${gapClass} ${className}`}>
+        {/* Balance Display - Hidden in header mode */}
+        {balance && !shouldHideBalance && (
           <div className="hidden sm:flex flex-col items-end text-right">
-            <span className="text-sm font-medium text-gray-900">
+            <span className={`${textSize} font-medium text-gray-900`}>
               {formatBalance(balance)} CORE
             </span>
             <span className="text-xs text-gray-500">Balance</span>
@@ -52,17 +72,17 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
         )}
 
         {/* Connected Wallet Info */}
-        <div className="flex items-center gap-2 bg-success-50 border border-success-200 rounded-lg px-4 py-2">
-          <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse-glow" />
-          <span className="text-mono text-sm font-medium text-success-900">
-            {formatAddress(address)}
+        <div className={`flex items-center gap-1.5 bg-success-50 border border-success-200 rounded-lg ${containerPadding}`}>
+          <div className={`${statusDotSize} bg-success-500 rounded-full animate-pulse-glow`} />
+          <span className={`text-mono ${textSize} font-medium text-success-900`}>
+            {formatAddress(address, isCompact)}
           </span>
           
           {/* Copy Address Button */}
           {onCopyAddress && (
             <IconButton
               icon={FiCopy}
-              size="sm"
+              size={iconButtonSize}
               variant="ghost"
               onClick={onCopyAddress}
               aria-label="Copy wallet address"
@@ -77,9 +97,17 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
             variant="ghost"
             size="sm"
             onClick={onDisconnect}
-            className="text-gray-600 hover:text-gray-900"
+            className={`text-gray-600 hover:text-gray-900 ${isCompact ? 'hidden sm:inline-flex' : ''}`}
           >
-            Disconnect
+            {isCompact ? (
+              <>
+                <span className="hidden md:inline">Disconnect</span>
+                <FiPower className="md:hidden inline h-4 w-4" />
+
+              </>
+            ) : (
+              'Disconnect'
+            )}
           </Button>
         )}
       </div>
