@@ -66,17 +66,56 @@ export const GET_TOKEN_DETAILS = gql`
         holder
         balance
         totalPurchased
+        totalSold
+        firstPurchaseTimestamp
+        lastActivityTimestamp
+      }
+      trades(first: 20, orderBy: timestamp, orderDirection: desc) {
+        id
+        trader
+        isBuy
+        coreAmount
+        tokenAmount
+        price
+        fee
+        timestamp
+        transactionHash
       }
     }
   }
   ${TOKEN_FULL_FRAGMENT}
 `;
 
+export const GET_TOKEN_CHART_DATA = gql`
+  query GetTokenChartData($tokenId: String!, $interval: String!, $from: String!, $to: String!) {
+    tokenOHLCs(
+      where: {
+        token: $tokenId
+        interval: $interval
+        timestamp_gte: $from
+        timestamp_lte: $to
+      }
+      orderBy: timestamp
+      orderDirection: asc
+      first: 1000
+    ) {
+      timestamp
+      open
+      high
+      low
+      close
+      volume
+      trades
+    }
+  }
+`;
+
 export const GET_RECENT_TRADES = gql`
-  query GetRecentTrades($tokenId: String!, $first: Int!) {
+  query GetRecentTrades($tokenId: String!, $first: Int!, $skip: Int!) {
     trades(
       where: { token: $tokenId }
       first: $first
+      skip: $skip
       orderBy: timestamp
       orderDirection: desc
     ) {
@@ -89,6 +128,66 @@ export const GET_RECENT_TRADES = gql`
       fee
       timestamp
       transactionHash
+    }
+  }
+`;
+
+export const GET_TOKEN_HOLDERS = gql`
+  query GetTokenHolders($tokenId: String!, $first: Int!, $skip: Int!) {
+    tokenHolders(
+      where: { token: $tokenId, balance_gt: "0" }
+      first: $first
+      skip: $skip
+      orderBy: balance
+      orderDirection: desc
+    ) {
+      holder
+      balance
+      totalPurchased
+      totalSold
+      firstPurchaseTimestamp
+      lastActivityTimestamp
+    }
+  }
+`;
+
+export const GET_TOKEN_METRICS = gql`
+  query GetTokenMetrics($tokenId: String!, $from24h: String!) {
+    token(id: $tokenId) {
+      id
+      currentPrice
+      totalCoreRaised
+      tokensSold
+      graduated
+    }
+    
+    # Get trades from last 24h for volume calculation
+    trades24h: trades(
+      where: { 
+        token: $tokenId
+        timestamp_gte: $from24h
+      }
+      orderBy: timestamp
+      orderDirection: desc
+      first: 1000
+    ) {
+      coreAmount
+      timestamp
+      price
+    }
+    
+    # Get price from 24h ago for change calculation
+    trades24hAgo: trades(
+      where: { 
+        token: $tokenId
+        timestamp_lte: $from24h
+      }
+      orderBy: timestamp
+      orderDirection: desc
+      first: 1
+    ) {
+      price
+      timestamp
     }
   }
 `;
