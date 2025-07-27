@@ -23,9 +23,9 @@ interface TabsProps {
 
 function Tabs({ activeTab, onTabChange }: TabsProps) {
   const tabs = [
-    { id: 'trades', label: 'Trading History', icon: '📊' },
+    { id: 'trades', label: 'Trades', icon: '📊' },
     { id: 'holders', label: 'Holders', icon: '👥' },
-    { id: 'info', label: 'Token Info', icon: 'ℹ️' },
+    { id: 'info', label: 'Info', icon: 'ℹ️' },
   ];
 
   return (
