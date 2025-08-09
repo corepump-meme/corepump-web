@@ -46,18 +46,18 @@ function TradeInput({
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-gray-700 dark:text-dark-text-secondary">
+        <label className="text-sm font-medium text-text-secondary dark:text-dark-text-secondary">
           {label}
         </label>
         {balance && (
           <div className="flex items-center space-x-2">
-            <span className="text-xs text-gray-500 dark:text-dark-text-tertiary">
+            <span className="text-xs text-text-tertiary dark:text-dark-text-tertiary">
               Balance: {balance} {symbol}
             </span>
             {onMaxClick && (
               <button
                 onClick={onMaxClick}
-                className="text-xs px-2 py-1 rounded bg-core-orange-100 text-core-orange-600 hover:bg-core-orange-200 dark:bg-dark-surface dark:text-core-orange-400"
+                className="text-xs px-2 py-1 rounded bg-core-orange-100 dark:bg-core-orange-500/20 text-core-orange-600 dark:text-core-orange-400 hover:bg-core-orange-200 dark:hover:bg-core-orange-500/30 border border-core-orange-200 dark:border-core-orange-500/30"
                 disabled={disabled}
               >
                 MAX
@@ -98,10 +98,10 @@ interface QuoteDisplayProps {
 function QuoteDisplay({ quote, isBuy, tokenSymbol, loading }: QuoteDisplayProps) {
   if (loading) {
     return (
-      <div className="p-4 bg-gray-50 dark:bg-dark-bg-secondary rounded-lg">
+      <div className="p-4 bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50">
         <div className="animate-pulse space-y-2">
-          <div className="h-4 bg-gray-200 dark:bg-dark-border-secondary rounded w-3/4"></div>
-          <div className="h-4 bg-gray-200 dark:bg-dark-border-secondary rounded w-1/2"></div>
+          <div className="h-4 bg-surface-secondary dark:bg-dark-surface-secondary rounded w-3/4"></div>
+          <div className="h-4 bg-surface-secondary dark:bg-dark-surface-secondary rounded w-1/2"></div>
         </div>
       </div>
     );
@@ -109,8 +109,8 @@ function QuoteDisplay({ quote, isBuy, tokenSymbol, loading }: QuoteDisplayProps)
 
   if (!quote || !quote.isValid) {
     return (
-      <div className="p-4 bg-gray-50 dark:bg-dark-bg-secondary rounded-lg">
-        <p className="text-sm text-gray-500 dark:text-dark-text-tertiary text-center">
+      <div className="p-4 bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50">
+        <p className="text-sm text-text-tertiary dark:text-dark-text-tertiary text-center">
           {quote?.error || 'Enter an amount to see quote'}
         </p>
       </div>
@@ -118,7 +118,7 @@ function QuoteDisplay({ quote, isBuy, tokenSymbol, loading }: QuoteDisplayProps)
   }
 
   return (
-    <div className="p-4 bg-gray-50 dark:bg-dark-bg-secondary rounded-lg space-y-3">
+    <div className="p-4 bg-gradient-to-br from-surface-hover to-surface-secondary dark:from-dark-surface-hover dark:to-dark-surface-secondary rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50 space-y-3">
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-600 dark:text-dark-text-secondary">
           You {isBuy ? 'receive' : 'get'}:

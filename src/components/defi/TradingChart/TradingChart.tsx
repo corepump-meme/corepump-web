@@ -31,7 +31,7 @@ function MetricCard({ label, value, change, icon, className }: MetricCardProps) 
   return (
     <div className={`p-4 rounded-lg border ${className}`}>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-gray-600 dark:text-dark-text-secondary">
+        <span className="text-xs font-medium text-text-secondary dark:text-dark-text-secondary">
           {label}{' '}
         {change !== undefined && (
           <span className={`text-sm font-medium ${
@@ -46,14 +46,14 @@ function MetricCard({ label, value, change, icon, className }: MetricCardProps) 
         
 
         {icon && (
-          <div className="text-gray-400 dark:text-dark-text-tertiary">
+          <div className="text-text-tertiary dark:text-dark-text-tertiary">
             {icon}
           </div>
         )}
       </div>
       
       <div className="flex items-end justify-between">
-        <span className="text-md font-bold font-mono text-gray-900 dark:text-dark-text-primary">
+        <span className="text-md font-bold font-mono text-text-primary dark:text-dark-text-primary">
           {value}
         </span>
       </div>
@@ -307,27 +307,27 @@ export function TradingChart({
             value={`${metrics.formattedPrice} CORE`}
             change={metrics.priceChange24h}
             icon={priceIcon}
-            className="bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-dark-bg-secondary dark:to-dark-bg-tertiary border-core-orange-200 dark:border-dark-border-primary"
+            className="bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10 border-core-orange-200 dark:border-core-orange-500/30"
           />
           
           <MetricCard
             label="Market Cap"
             value={`${metrics.formattedMarketCap} CORE`}
             icon={marketCapIcon}
-            className="bg-gradient-to-br from-success-50 to-info-50 dark:from-dark-bg-secondary dark:to-dark-bg-tertiary border-success-200 dark:border-dark-border-primary"
+            className="bg-gradient-to-br from-success-50 to-info-50 dark:from-success-500/10 dark:to-info-500/10 border-success-200 dark:border-dark-success-border"
           />
           
           <MetricCard
             label="24h Volume"
             value={`${metrics.formattedVolume24h} CORE`}
             icon={volumeIcon}
-            className="bg-gradient-to-br from-info-50 to-warning-50 dark:from-dark-bg-secondary dark:to-dark-bg-tertiary border-info-200 dark:border-dark-border-primary"
+            className="bg-gradient-to-br from-info-50 to-warning-50 dark:from-info-500/10 dark:to-warning-500/10 border-info-200 dark:border-dark-info-border"
           />
         </div>
 
         <div className="mb-4 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-dark-text-primary">
+            <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary">
               {tokenSymbol} / CORE
             </h3>
             <ChartControls
@@ -355,17 +355,17 @@ export function TradingChart({
           )}
 
           {!hasData && !loading && (
-            <div className="flex items-center justify-center bg-gray-50 dark:bg-dark-bg-secondary rounded-lg" style={{ height }}>
+            <div className="flex items-center justify-center bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50" style={{ height }}>
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 dark:bg-dark-border-secondary rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-gray-400 dark:text-dark-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 mx-auto mb-4 bg-surface-secondary dark:bg-dark-surface-secondary rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-text-tertiary dark:text-dark-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
-                <p className="text-gray-600 dark:text-dark-text-secondary">
+                <p className="text-text-secondary dark:text-dark-text-secondary">
                   No trading data available yet
                 </p>
-                <p className="text-sm text-gray-500 dark:text-dark-text-tertiary mt-1">
+                <p className="text-sm text-text-tertiary dark:text-dark-text-tertiary mt-1">
                   Chart will appear once trading begins
                 </p>
               </div>
@@ -381,7 +381,7 @@ export function TradingChart({
 
         {/* Chart Footer */}
         {hasData && (
-          <div className="mt-3 text-xs text-gray-500 dark:text-dark-text-tertiary text-center">
+          <div className="mt-3 text-xs text-text-tertiary dark:text-dark-text-tertiary text-center">
             Drag to pan • Scroll to zoom • Double-click to fit
           </div>
         )}
