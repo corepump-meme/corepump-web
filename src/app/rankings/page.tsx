@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
@@ -42,7 +43,7 @@ export default function RankingsPage() {
           </h2>
           
           <p className="text-lg text-text-secondary dark:text-dark-text-secondary mb-8 max-w-2xl mx-auto">
-            We're building an advanced ranking system to help you discover the best performing tokens. 
+            We&apos;re building an advanced ranking system to help you discover the best performing tokens. 
             Track volume, market cap, price changes, and community metrics all in one place.
           </p>
 
@@ -85,18 +86,18 @@ export default function RankingsPage() {
               Want to be notified when rankings go live?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/launch"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
                 Launch Your Token
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="inline-flex items-center justify-center px-6 py-3 border-2 border-core-orange-500 text-base font-medium rounded-lg text-core-orange-500 bg-transparent hover:bg-core-orange-500 hover:text-white dark:hover:bg-core-orange-500 dark:hover:text-white transition-all duration-200"
               >
                 Explore Platform
-              </a>
+              </Link>
             </div>
           </div>
         </div>

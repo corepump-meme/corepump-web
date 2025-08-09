@@ -125,7 +125,7 @@ export function TokenControls({
           <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-border-secondary dark:border-dark-border-secondary">
             {searchQuery && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-core-orange-100 dark:bg-core-orange-500/20 text-core-orange-800 dark:text-core-orange-300 border border-core-orange-200 dark:border-core-orange-500/30">
-                Search: "{searchQuery}"
+                Search: &ldquo;{searchQuery}&rdquo;
                 <button
                   onClick={() => {
                     setLocalSearch('');

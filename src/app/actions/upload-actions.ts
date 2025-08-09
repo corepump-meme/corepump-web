@@ -3,6 +3,8 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { r2Client, R2_CONFIG } from '@/lib/r2-client';
 
+type AllowedImageType = typeof R2_CONFIG.allowedTypes[number];
+
 export interface UploadResult {
   success: boolean;
   imageUrl?: string;
@@ -22,7 +24,7 @@ export async function uploadTokenImage(formData: FormData): Promise<UploadResult
       return { success: false, error: 'File too large (max 5MB)' };
     }
 
-    if (!R2_CONFIG.allowedTypes.includes(file.type as any)) {
+    if (!R2_CONFIG.allowedTypes.includes(file.type as AllowedImageType)) {
       return { success: false, error: 'Invalid file type. Only JPG, PNG, GIF, and WebP are allowed.' };
     }
 
@@ -77,7 +79,7 @@ export async function validateImageFile(file: File): Promise<{ isValid: boolean;
   }
 
   // Type validation
-  if (!R2_CONFIG.allowedTypes.includes(file.type as any)) {
+  if (!R2_CONFIG.allowedTypes.includes(file.type as AllowedImageType)) {
     return {
       isValid: false,
       error: 'Invalid file type. Only JPG, PNG, GIF, and WebP are allowed.',

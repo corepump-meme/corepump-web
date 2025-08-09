@@ -115,7 +115,7 @@ export function TokenList({ className = '' }: TokenListProps) {
             <div className="mt-8 text-center text-sm text-text-tertiary dark:text-dark-text-tertiary">
               {searchQuery ? (
                 <p>
-                  Showing {tokens.length} result{tokens.length !== 1 ? 's' : ''} for "{searchQuery}"
+                  Showing {tokens.length} result{tokens.length !== 1 ? 's' : ''} for &ldquo;{searchQuery}&rdquo;
                 </p>
               ) : (
                 <p>

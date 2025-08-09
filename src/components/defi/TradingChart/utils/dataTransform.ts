@@ -1,5 +1,5 @@
 import { formatEther } from 'viem';
-import { CandlestickData, HistogramData } from 'lightweight-charts';
+import { CandlestickData, HistogramData, Time } from 'lightweight-charts';
 import { TimeFrame } from './chartConfig';
 
 export interface TokenOHLC {
@@ -41,7 +41,7 @@ export const transformOHLCData = (ohlcData: TokenOHLC[]): CandlestickData[] => {
         }
 
         return {
-          time: timestamp as any, // TradingView accepts Unix timestamp
+          time: timestamp as Time, // TradingView accepts Unix timestamp
           open,
           high,
           low,
@@ -72,7 +72,7 @@ export const transformVolumeData = (ohlcData: TokenOHLC[]): HistogramData[] => {
         }
 
         return {
-          time: timestamp as any,
+          time: timestamp as Time,
           value: volume,
           color: '#64748b', // Default gray color
         };
@@ -149,7 +149,7 @@ export const generateOHLCFromTrades = (
       }
 
       candlesticks.push({
-        time: intervalStart as any,
+        time: intervalStart as Time,
         open,
         high,
         low,
@@ -157,7 +157,7 @@ export const generateOHLCFromTrades = (
       });
 
       volumes.push({
-        time: intervalStart as any,
+        time: intervalStart as Time,
         value: totalVolume,
         color: '#64748b',
       });
@@ -185,7 +185,6 @@ export const fillMissingCandles = (
   const filled: CandlestickData[] = [];
   
   let currentTime = Math.floor(startTime / timeFrameSeconds) * timeFrameSeconds;
-  let candleIndex = 0;
   let lastClose = candlesticks[0].close;
 
   while (currentTime <= endTime) {
@@ -194,11 +193,10 @@ export const fillMissingCandles = (
     if (existingCandle) {
       filled.push(existingCandle);
       lastClose = existingCandle.close;
-      candleIndex++;
     } else if (filled.length > 0) {
       // Fill gap with flat candle at last close price
       filled.push({
-        time: currentTime as any,
+        time: currentTime as Time,
         open: lastClose,
         high: lastClose,
         low: lastClose,

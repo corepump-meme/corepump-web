@@ -1,9 +1,9 @@
 'use client';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, ApolloError } from '@apollo/client';
 import { useState, useEffect, useMemo } from 'react';
 import { GET_TOKEN_DETAILS, GET_TOKEN_METRICS } from '@/queries/tokens';
-import { formatBigIntToFixed, safeBigIntOperation, formatNumber, getTimeAgo } from '@/lib/bigint-utils';
+import { formatBigIntToFixed, safeBigIntOperation, formatNumber } from '@/lib/bigint-utils';
 import { Token, Trade, TokenHolder } from '@/types/graphql';
 
 export interface TokenMetrics {
@@ -25,7 +25,7 @@ export interface UseTokenDataReturn {
   holders: TokenHolder[];
   recentTrades: Trade[];
   loading: boolean;
-  error: any;
+  error: ApolloError | null;
   refetch: () => void;
 }
 
@@ -80,7 +80,7 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
     const volume24h = safeBigIntOperation(
       () => {
         return metricsData.trades24h?.reduce(
-          (sum: bigint, trade: any) => sum + BigInt(trade.coreAmount),
+          (sum: bigint, trade: Trade) => sum + BigInt(trade.coreAmount),
           BigInt(0)
         ) || BigInt(0);
       },
@@ -155,7 +155,7 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
       stopTokenPolling();
       stopMetricsPolling();
     };
-  }, [tokenData?.token?.graduated, startTokenPolling, stopTokenPolling, startMetricsPolling, stopMetricsPolling]);
+  }, [tokenData?.token, startTokenPolling, stopTokenPolling, startMetricsPolling, stopMetricsPolling]);
 
   // Pause polling when tab is not visible
   useEffect(() => {
@@ -184,7 +184,7 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
     holders: tokenData?.token?.holders || [],
     recentTrades: tokenData?.token?.trades || [],
     loading: tokenLoading || metricsLoading,
-    error: tokenError || metricsError,
+    error: tokenError || metricsError || null,
     refetch,
   };
 }

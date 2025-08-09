@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Token } from '@/types/graphql';
 import { formatBigIntToFixed, formatCurrency, getTimeAgo, formatPercentage } from '@/lib/bigint-utils';
+import Image from 'next/image';
 
 interface TokenListItemProps {
   token: Token;
@@ -31,9 +32,11 @@ export function TokenListItem({ token }: TokenListItemProps) {
           {/* Token Icon */}
           <div className="w-12 h-12 rounded-full bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 flex items-center justify-center text-white font-semibold flex-shrink-0">
             {token.image ? (
-              <img 
+              <Image 
                 src={token.image} 
                 alt={token.name}
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

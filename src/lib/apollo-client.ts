@@ -14,7 +14,7 @@ export const apolloClient = new ApolloClient({
         fields: {
           tokens: {
             keyArgs: ['orderBy', 'orderDirection', 'where'],
-            merge(existing: any[] = [], incoming: any[], { args }: { args?: any }) {
+            merge(existing = [], incoming, { args }) {
               const { skip = 0 } = args || {};
               const merged = existing ? existing.slice() : [];
               for (let i = 0; i < incoming.length; ++i) {
@@ -28,12 +28,12 @@ export const apolloClient = new ApolloClient({
       Token: {
         fields: {
           trades: {
-            merge(existing: any[] = [], incoming: any[]) {
+            merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },
           },
           holders: {
-            merge(existing: any[] = [], incoming: any[]) {
+            merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },
           },

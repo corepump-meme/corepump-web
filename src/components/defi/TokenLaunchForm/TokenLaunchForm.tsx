@@ -50,15 +50,6 @@ function SubmitButton({
 
 export function TokenLaunchForm() {
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [formData, setFormData] = useState<TokenLaunchData>({
-    name: '',
-    symbol: '',
-    description: '',
-    image: '',
-    website: '',
-    telegram: '',
-    twitter: '',
-  });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   
   const router = useRouter();
@@ -67,7 +58,6 @@ export function TokenLaunchForm() {
     canLaunch,
     txHash,
     tokenAddress,
-    bondingCurveAddress,
     isPending,
     isConfirming,
     isSuccess,
@@ -147,7 +137,6 @@ export function TokenLaunchForm() {
     }
     
     setFormErrors({});
-    setFormData(tokenData);
     
     try {
       await launchToken(tokenData);

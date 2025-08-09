@@ -5,6 +5,7 @@ import { useTokenData } from '@/hooks/useTokenData';
 import { useWallet } from '@/hooks/useWallet';
 import { useReadContract } from 'wagmi';
 import { ERC20_ABI } from '@/lib/contracts';
+import { Token, TokenHolder } from '@/types/graphql';
 import { 
   TokenHeader, 
   TradingInterface,
@@ -54,7 +55,7 @@ function Tabs({ activeTab, onTabChange }: TabsProps) {
   );
 }
 
-function HoldersTab({ holders }: { holders: any[] }) {
+function HoldersTab({ holders }: { holders: TokenHolder[] }) {
   if (holders.length === 0) {
     return (
       <div className="text-center py-8">
@@ -108,11 +109,7 @@ function HoldersTab({ holders }: { holders: any[] }) {
   );
 }
 
-function TokenInfoTab({ token }: { token: any }) {
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  };
-
+function TokenInfoTab({ token }: { token: Token }) {
   return (
     <div className="space-y-6">
       {/* Contract Information */}

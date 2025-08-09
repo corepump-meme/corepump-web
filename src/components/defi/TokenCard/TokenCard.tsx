@@ -3,6 +3,7 @@
 import React from 'react';
 import { FiTrendingUp, FiTrendingDown, FiExternalLink } from 'react-icons/fi';
 import { Card } from '../../ui/Card';
+import Image from 'next/image';
 
 export interface TokenCardProps {
   token: {
@@ -75,9 +76,11 @@ const TokenCard: React.FC<TokenCardProps> = ({
         {/* Token Icon */}
         <div className="relative">
           {token.image ? (
-            <img
+            <Image
               src={token.image}
               alt={token.name}
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full object-cover"
             />
           ) : (

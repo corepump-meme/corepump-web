@@ -25,6 +25,12 @@ interface UseChartDataOptions {
   updateInterval?: number;
 }
 
+interface PriceChange {
+  change: number;
+  changePercent: number;
+  isPositive: boolean;
+}
+
 interface ChartDataResult {
   candlesticks: CandlestickData[];
   volumes: HistogramData[];
@@ -32,11 +38,7 @@ interface ChartDataResult {
   error: string | null;
   hasData: boolean;
   latestPrice?: number;
-  priceChange?: {
-    change: number;
-    changePercent: number;
-    isPositive: boolean;
-  };
+  priceChange?: PriceChange;
   refresh: () => Promise<void>;
 }
 
@@ -51,7 +53,7 @@ export const useChartData = ({
     volumes: [] as HistogramData[],
     hasData: false,
     latestPrice: undefined as number | undefined,
-    priceChange: undefined as any,
+    priceChange: undefined as PriceChange | undefined,
   });
 
   // Calculate time range based on timeframe

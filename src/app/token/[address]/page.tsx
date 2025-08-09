@@ -4,9 +4,9 @@ import { LoadingSpinner } from '@/components';
 import { TokenDetailsContent } from './TokenDetailsContent';
 
 interface TokenPageProps {
-  params: {
+  params: Promise<{
     address: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: TokenPageProps) {

@@ -5,7 +5,7 @@ import { useWriteContract, useReadContract, useWaitForTransactionReceipt, usePub
 import { parseEther, formatEther } from 'viem';
 import { BONDING_CURVE_ABI, ERC20_ABI } from '@/lib/contracts';
 import { useWallet } from './useWallet';
-import { safeBigIntOperation, formatBigIntToFixed } from '@/lib/bigint-utils';
+import { safeBigIntOperation } from '@/lib/bigint-utils';
 
 export interface TradeQuote {
   inputAmount: bigint;
@@ -32,10 +32,6 @@ export interface UseTradingActionsParams {
   maxPurchaseAmount?: bigint;
 }
 
-const MAX_PURCHASE_PERCENTAGE = 4; // 4% limit
-const PLATFORM_FEE = 100; // 1% = 100 basis points
-const BASIS_POINTS = 10000;
-const SLIPPAGE_TOLERANCE = 200; // 2% default slippage tolerance
 
 export function useTradingActions({
   tokenAddress,
@@ -74,8 +70,7 @@ export function useTradingActions({
 
   // Check token allowance for selling
   const { 
-    data: allowance, 
-    refetch: refetchAllowance 
+    data: allowance 
   } = useReadContract({
     address: tokenAddress as `0x${string}`,
     abi: ERC20_ABI,
@@ -155,14 +150,14 @@ export function useTradingActions({
         priceImpact,
         isValid: true
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       return {
         inputAmount: parseEther(coreAmount),
         outputAmount: BigInt(0),
         fee: BigInt(0),
         priceImpact: 0,
         isValid: false,
-        error: error.message || 'Failed to calculate quote'
+        error: error instanceof Error ? error.message : 'Failed to calculate quote'
       };
     }
   }, [balance, maxPurchaseAmount, currentPrice, publicClient, bondingCurveAddress]);
@@ -226,14 +221,14 @@ export function useTradingActions({
         priceImpact,
         isValid: true
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       return {
         inputAmount: parseEther(tokenAmount),
         outputAmount: BigInt(0),
         fee: BigInt(0),
         priceImpact: 0,
         isValid: false,
-        error: error.message || 'Failed to calculate quote'
+        error: error instanceof Error ? error.message : 'Failed to calculate quote'
       };
     }
   }, [userTokenBalance, currentPrice, publicClient, bondingCurveAddress]);
@@ -269,12 +264,12 @@ export function useTradingActions({
         hash: hash?.toString()
       }));
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       setTradeState({
         isLoading: false,
         isPending: false,
         isSuccess: false,
-        error: error.message || 'Transaction failed',
+        error: error instanceof Error ? error.message : 'Transaction failed',
       });
     }
   }, [isConnected, address, bondingCurveAddress, writeContract, hash]);
@@ -327,12 +322,12 @@ export function useTradingActions({
         hash: hash?.toString()
       }));
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       setTradeState({
         isLoading: false,
         isPending: false,
         isSuccess: false,
-        error: error.message || 'Transaction failed',
+        error: error instanceof Error ? error.message : 'Transaction failed',
       });
     }
   }, [isConnected, address, tokenAddress, bondingCurveAddress, allowance, writeContract, hash]);

@@ -2,7 +2,7 @@
 
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { useState, useEffect } from 'react';
-import { parseEther, keccak256, toHex, type TransactionReceipt, type Log } from 'viem';
+import { parseEther, keccak256, toHex, type Log } from 'viem';
 import { CONTRACT_ADDRESSES } from '@/lib/wagmi';
 import { COIN_FACTORY_ABI } from '@/lib/contracts';
 import { useWallet } from './useWallet';

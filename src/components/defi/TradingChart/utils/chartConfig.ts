@@ -1,4 +1,4 @@
-import { DeepPartial, ChartOptions, CandlestickSeriesOptions, HistogramSeriesOptions } from 'lightweight-charts';
+import { DeepPartial, ChartOptions, HistogramSeriesOptions } from 'lightweight-charts';
 
 export type TimeFrame = '1m' | '5m' | '15m' | '1h';
 
@@ -78,20 +78,6 @@ export const getChartOptions = (isDark: boolean): DeepPartial<ChartOptions> => (
     },
     mouseWheel: true,
     pinch: true,
-  },
-});
-
-export const getCandlestickSeriesOptions = (isDark: boolean): DeepPartial<CandlestickSeriesOptions> => ({
-  upColor: '#10b981', // green-500
-  downColor: '#ef4444', // red-500
-  borderUpColor: '#10b981',
-  borderDownColor: '#ef4444',
-  wickUpColor: '#10b981',
-  wickDownColor: '#ef4444',
-  priceFormat: {
-    type: 'price',
-    precision: 6,
-    minMove: 0.000001,
   },
 });
 

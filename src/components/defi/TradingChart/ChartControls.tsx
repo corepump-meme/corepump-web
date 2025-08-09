@@ -99,7 +99,6 @@ export function ChartLegend({
   latestPrice,
   priceChange,
   volume,
-  tokenSymbol = 'TOKEN',
   className = ''
 }: ChartLegendProps) {
   const formatPrice = (price: number) => {

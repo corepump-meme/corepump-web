@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FiCreditCard, FiCheck, FiAlertTriangle, FiRefreshCw } from 'react-icons/fi';
+import { FiCreditCard, FiAlertTriangle, FiRefreshCw } from 'react-icons/fi';
 import { Button, Alert } from '@/components';
 import { useWallet } from '@/hooks/useWallet';
 

@@ -42,8 +42,8 @@ export function useWallet() {
       } else {
         setError('No wallet connector found');
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to connect wallet');
     }
   };
 
@@ -51,8 +51,8 @@ export function useWallet() {
     try {
       setError(null);
       await switchChain({ chainId: coreChain.id });
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to switch to Core Chain');
     }
   };
 
@@ -60,8 +60,8 @@ export function useWallet() {
     try {
       setError(null);
       await switchChain({ chainId: coreTestnet.id });
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to switch to testnet');
     }
   };
 

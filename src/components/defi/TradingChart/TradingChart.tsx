@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { createChart, IChartApi, HistogramSeries, CandlestickSeries } from 'lightweight-charts';
+import { 
+  createChart, 
+  IChartApi, 
+  ISeriesApi,
+  HistogramSeries, 
+  CandlestickSeries 
+} from 'lightweight-charts';
 import { Card } from '@/components/ui/Card';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ChartControls, ChartLegend } from './ChartControls';
@@ -74,8 +80,8 @@ export function TradingChart({
 }: TradingChartProps) {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
-  const candlestickSeriesRef = useRef<any>(null);
-  const volumeSeriesRef = useRef<any>(null);
+  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);
+  const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   
   const [timeFrame, setTimeFrame] = useState<TimeFrame>('5m');
@@ -128,7 +134,7 @@ export function TradingChart({
     });
 
     // Create candlestick series - v5 API with correct type names and simplified options
-    const candlestickSeries = (chart as any).addSeries(CandlestickSeries, {
+    const candlestickSeries = chart.addSeries(CandlestickSeries, {
       upColor: '#10b981', // green-500
       downColor: '#ef4444', // red-500
       borderUpColor: '#10b981',
@@ -138,7 +144,7 @@ export function TradingChart({
     });
     
     // Create volume series - v5 API with simplified options
-    const volumeSeries = (chart as any).addSeries(HistogramSeries, {
+    const volumeSeries = chart.addSeries(HistogramSeries, {
       color: isDark ? '#64748b' : '#9ca3af',
       priceScaleId: 'volume',
     });

@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { formatEther, parseEther } from 'viem';
+import { formatEther } from 'viem';
 import { Button, Input, Card } from '@/components';
 import { useTradingActions, TradeQuote } from '@/hooks/useTradingActions';
 import { useWallet } from '@/hooks/useWallet';
-import { formatBigIntToFixed, formatNumber } from '@/lib/bigint-utils';
+import { formatBigIntToFixed } from '@/lib/bigint-utils';
 import { TransactionLink } from '@/components/ui/TransactionLink';
 
 interface TradingInterfaceProps {

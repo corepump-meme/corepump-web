@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { FiUpload, FiX, FiImage } from 'react-icons/fi';
 import { uploadTokenImage, validateImageFile } from '@/app/actions/upload-actions';
 import { Button, Alert } from '@/components';
+import Image from 'next/image';
 
 interface ImageUploadProps {
   onImageUploaded: (url: string) => void;
@@ -50,7 +51,7 @@ export function ImageUpload({ onImageUploaded, currentImage, className = '' }: I
         setError(result.error || 'Upload failed');
         setPreview(currentImage || null);
       }
-    } catch (error) {
+    } catch {
       setError('Upload failed. Please try again.');
       setPreview(currentImage || null);
     } finally {
@@ -85,9 +86,11 @@ export function ImageUpload({ onImageUploaded, currentImage, className = '' }: I
           <div className="w-20 h-20 rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden transition-all duration-200 hover:border-core-orange-300">
             {preview ? (
               <>
-                <img 
-                  src={preview} 
-                  alt="Token preview" 
+                <Image
+                  src={preview}
+                  alt="Token preview"
+                  fill
+                  sizes="(max-width: 80px) 80px, 100px"
                   className="w-full h-full object-cover rounded-lg"
                 />
                 {!uploading && (

@@ -10,8 +10,8 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-core-orange-500 mb-6 transition-colors duration-200">
             The First Meme Fair Launchpad on{' '}
-            <Image src="/core.png" alt="Core Logo" width={271} height={70} className="inline-block dark:hidden object-contain" />
-            <Image src="/core-light.png" alt="Core Logo" width={271} height={70} className="hidden dark:inline-block object-contain" />
+            <Image src="/core.png" alt="Core Logo" width={180} height={50} className="inline-block dark:hidden object-contain" />
+            <Image src="/core-light.png" alt="Core Logo" width={180} height={50} className="hidden dark:inline-block object-contain" />
           </h1>
           <p className="text-xl text-gray-600 dark:text-dark-text-secondary max-w-3xl mx-auto mb-8 transition-colors duration-200">
             A launchpad on Core Chain with an on-chain defense system against dumps, monopolies, and rugs.
