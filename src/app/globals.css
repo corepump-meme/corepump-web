@@ -90,74 +90,6 @@
   --foreground: var(--text-primary);
 }
 
-/* Dark Mode - System Preference */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode Backgrounds */
-    --bg-primary: #0A0A0A;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1A1A1A;
-    --surface: #1E1E1E;
-    --surface-elevated: #252525;
-    --surface-hover: #2A2A2A;
-    
-    /* Dark Mode Text */
-    --text-primary: #FFFFFF;
-    --text-secondary: #E5E5E5;
-    --text-tertiary: #B3B3B3;
-    --text-disabled: #666666;
-    --text-mono: #F0F0F0;
-    
-    /* Dark Mode Borders */
-    --border-primary: #333333;
-    --border-secondary: #2A2A2A;
-    --border-focus: #FF6B35;
-    
-    /* Dark Mode Semantic Colors */
-    --success: #00E676;
-    --success-bg: #0D2818;
-    --success-border: #1B4D2E;
-    --warning: #FFD54F;
-    --warning-bg: #2A2416;
-    --warning-border: #4A3F1A;
-    --error: #FF5252;
-    --error-bg: #2A1616;
-    --error-border: #4A1F1F;
-    --info: #29B6F6;
-    --info-bg: #16252A;
-    --info-border: #1F3A4A;
-    
-    /* Dark Mode Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
-    --shadow-core: 0 2px 8px rgba(255, 107, 53, 0.2);
-    --shadow-core-lg: 0 4px 12px rgba(255, 107, 53, 0.3);
-
-    /* Legacy variables for compatibility */
-    --background: var(--bg-primary);
-    --foreground: var(--text-primary);
-  }
-}
-
-
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  :root {
-    --border-primary: #000000;
-    --text-secondary: #000000;
-  }
-}
-
-@media (prefers-contrast: high) and (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #000000;
-    --text-primary: #FFFFFF;
-    --border-primary: #FFFFFF;
-    --text-secondary: #FFFFFF;
-  }
-}
-
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -212,13 +144,6 @@
   --color-info-500: var(--info);
   --color-info-600: var(--info-dark);
   --color-info-900: #007C99;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--gray-900);
-    --foreground: var(--gray-100);
-  }
 }
 
 body {

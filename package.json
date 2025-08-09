@@ -13,6 +13,7 @@
     "@aws-sdk/client-s3": "^3.850.0",
     "@tanstack/react-query": "^5.83.0",
     "graphql": "^16.11.0",
+    "lightweight-charts": "^5.0.8",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

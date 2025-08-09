@@ -2,10 +2,14 @@
 
 import React, { useState } from 'react';
 import { useTokenData } from '@/hooks/useTokenData';
+import { useWallet } from '@/hooks/useWallet';
+import { useReadContract } from 'wagmi';
+import { ERC20_ABI } from '@/lib/contracts';
 import { 
   TokenHeader, 
-  TokenMetrics, 
+  TradingInterface,
   TradingHistory, 
+  TradingChart,
   Alert, 
   LoadingSpinner,
   Card,
@@ -227,6 +231,18 @@ function TokenInfoTab({ token }: { token: any }) {
 export function TokenDetailsContent({ address }: TokenDetailsContentProps) {
   const [activeTab, setActiveTab] = useState('trades');
   const { token, metrics, holders, recentTrades, loading, error } = useTokenData(address);
+  const { address: userAddress } = useWallet();
+
+  // Get user token balance
+  const { data: userTokenBalance } = useReadContract({
+    address: address as `0x${string}`,
+    abi: ERC20_ABI,
+    functionName: 'balanceOf',
+    args: userAddress ? [userAddress] : undefined,
+    query: {
+      enabled: !!userAddress && !!address,
+    },
+  });
 
   if (loading) {
     return (
@@ -265,8 +281,30 @@ export function TokenDetailsContent({ address }: TokenDetailsContentProps) {
       {/* Token Header */}
       <TokenHeader token={token} />
 
-      {/* Token Metrics */}
-      <TokenMetrics metrics={metrics} />
+      {/* Chart and Trading Interface Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <TradingChart 
+            metrics={metrics}
+            tokenAddress={token.id}
+            tokenSymbol={token.symbol}
+            height={400}
+            autoUpdate={true}
+          />
+        </div>
+        <div>
+          <TradingInterface
+            tokenAddress={token.id}
+            bondingCurveAddress={token.bondingCurve}
+            tokenSymbol={token.symbol}
+            currentPrice={BigInt(metrics.currentPrice)}
+            userTokenBalance={userTokenBalance}
+            graduated={token.graduated}
+            className="sticky top-6"
+            progressToGraduation={metrics.progressToGraduation}
+          />
+        </div>
+      </div>
 
       {/* Tabbed Content */}
       <Card>

@@ -189,8 +189,8 @@ export function TradingHistory({ trades, className }: TradingHistoryProps) {
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-dark-surface divide-y divide-gray-200 dark:divide-dark-border-primary">
-            {displayTrades.map((trade) => (
-              <TradeRow key={trade.id} trade={trade} />
+            {displayTrades.map((trade, index) => (
+              <TradeRow key={trade.id + trade.trader + trade.timestamp + index} trade={trade} />
             ))}
           </tbody>
         </table>

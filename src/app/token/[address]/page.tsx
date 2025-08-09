@@ -10,9 +10,10 @@ interface TokenPageProps {
 }
 
 export async function generateMetadata({ params }: TokenPageProps) {
+  const { address } = await params;
   return {
-    title: `Token ${await params.address} | CorePump`,
-    description: `View details for token ${await params.address} on CorePump`,
+    title: `Token ${address} | CorePump`,
+    description: `View details for token ${address} on CorePump`,
   };
 }
 
@@ -20,9 +21,11 @@ function validateAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address);
 }
 
-export default function TokenPage({ params }: TokenPageProps) {
+export default async function TokenPage({ params }: TokenPageProps) {
+  const { address } = await params;
+  
   // Validate address format
-  if (!validateAddress(params.address)) {
+  if (!validateAddress(address)) {
     notFound();
   }
 
@@ -34,7 +37,7 @@ export default function TokenPage({ params }: TokenPageProps) {
             <LoadingSpinner size="lg" text="Loading token details..." />
           </div>
         }>
-          <TokenDetailsContent address={params.address} />
+          <TokenDetailsContent address={address} />
         </Suspense>
       </div>
     </div>
