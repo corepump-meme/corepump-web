@@ -8,7 +8,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-dark-text-primary mb-6 transition-colors duration-200">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-core-orange-500 mb-6 transition-colors duration-200">
             The First Meme Fair Launchpad on{' '}
             <Image src="/core.png" alt="Core Logo" width={271} height={70} className="inline-block dark:hidden object-contain" />
             <Image src="/core-light.png" alt="Core Logo" width={271} height={70} className="hidden dark:inline-block object-contain" />
