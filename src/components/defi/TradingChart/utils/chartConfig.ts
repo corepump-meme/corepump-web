@@ -1,12 +1,15 @@
 import { DeepPartial, ChartOptions, HistogramSeriesOptions } from 'lightweight-charts';
 
-export type TimeFrame = '1m' | '5m' | '15m' | '1h';
+export type Interval = '1m' | '5m' | '15m' | '1h' | '4h' | '1d' | '1w';
 
-export const TIME_FRAME_OPTIONS = [
+export const INTERVAL_OPTIONS = [
   { value: '1m', label: '1m' },
   { value: '5m', label: '5m' },
   { value: '15m', label: '15m' },
   { value: '1h', label: '1h' },
+  { value: '4h', label: '4h' },
+  { value: '1d', label: '1d' },
+  { value: '1w', label: '1w' },
 ] as const;
 
 export const getChartOptions = (isDark: boolean): DeepPartial<ChartOptions> => ({
@@ -89,33 +92,70 @@ export const getVolumeSeriesOptions = (isDark: boolean): DeepPartial<HistogramSe
   priceScaleId: 'volume',
 });
 
-export const getTimeFrameSeconds = (timeFrame: TimeFrame): number => {
-  switch (timeFrame) {
+export const getIntervalSeconds = (interval: Interval): number => {
+  switch (interval) {
     case '1m': return 60;
     case '5m': return 300;
     case '15m': return 900;
     case '1h': return 3600;
+    case '4h': return 14400;
+    case '1d': return 86400;
+    case '1w': return 604800;
     default: return 300;
   }
 };
 
-export const getTimeFrameLabel = (timeFrame: TimeFrame): string => {
-  switch (timeFrame) {
+export const getIntervalLabel = (interval: Interval): string => {
+  switch (interval) {
     case '1m': return '1 Minute';
     case '5m': return '5 Minutes';
     case '15m': return '15 Minutes';
     case '1h': return '1 Hour';
+    case '4h': return '4 Hours';
+    case '1d': return '1 Day';
+    case '1w': return '1 Week';
     default: return '5 Minutes';
   }
 };
 
-// Calculate how many candles to fetch based on timeframe
-export const getCandleCount = (timeFrame: TimeFrame): number => {
-  switch (timeFrame) {
+// Calculate how many candles to fetch based on interval
+export const getCandleCount = (interval: Interval): number => {
+  switch (interval) {
     case '1m': return 240; // 4 hours of data
     case '5m': return 288; // 24 hours of data
     case '15m': return 96; // 24 hours of data
     case '1h': return 168; // 7 days of data
+    case '4h': return 180; // 30 days of data
+    case '1d': return 180; // 6 months of data
+    case '1w': return 104; // 2 years of data
     default: return 288;
+  }
+};
+
+// Get the optimal data range duration in seconds based on interval
+export const getDataRangeDuration = (interval: Interval): number => {
+  switch (interval) {
+    case '1m': return 4 * 3600; // 4 hours
+    case '5m': return 24 * 3600; // 24 hours
+    case '15m': return 24 * 3600; // 24 hours
+    case '1h': return 7 * 24 * 3600; // 7 days
+    case '4h': return 30 * 24 * 3600; // 30 days
+    case '1d': return 180 * 24 * 3600; // 6 months
+    case '1w': return 2 * 365 * 24 * 3600; // 2 years
+    default: return 24 * 3600;
+  }
+};
+
+// Get update frequency in milliseconds based on interval
+export const getUpdateFrequency = (interval: Interval): number => {
+  switch (interval) {
+    case '1m': return 10000; // 10 seconds
+    case '5m': return 30000; // 30 seconds
+    case '15m': return 60000; // 1 minute
+    case '1h': return 300000; // 5 minutes
+    case '4h': return 900000; // 15 minutes
+    case '1d': return 3600000; // 1 hour
+    case '1w': return 21600000; // 6 hours
+    default: return 30000;
   }
 };

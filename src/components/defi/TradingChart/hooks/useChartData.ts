@@ -16,11 +16,11 @@ import {
   TokenOHLC,
   Trade 
 } from '../utils/dataTransform';
-import { TimeFrame } from '../utils/chartConfig';
+import { Interval, getDataRangeDuration, getUpdateFrequency } from '../utils/chartConfig';
 
 interface UseChartDataOptions {
   tokenAddress: string;
-  timeFrame: TimeFrame;
+  interval: Interval;
   autoUpdate?: boolean;
   updateInterval?: number;
 }
@@ -44,10 +44,12 @@ interface ChartDataResult {
 
 export const useChartData = ({
   tokenAddress,
-  timeFrame,
+  interval,
   autoUpdate = true,
-  updateInterval = 10000
+  updateInterval
 }: UseChartDataOptions): ChartDataResult => {
+  // Use dynamic update interval based on the interval type if not provided
+  const actualUpdateInterval = updateInterval || getUpdateFrequency(interval);
   const [chartData, setChartData] = useState({
     candlesticks: [] as CandlestickData[],
     volumes: [] as HistogramData[],
@@ -56,18 +58,10 @@ export const useChartData = ({
     priceChange: undefined as PriceChange | undefined,
   });
 
-  // Calculate time range based on timeframe
+  // Calculate time range based on interval
   const getTimeRange = useCallback(() => {
     const now = Math.floor(Date.now() / 1000);
-    
-    let duration: number;
-    switch (timeFrame) {
-      case '1m': duration = 4 * 3600; break; // 4 hours
-      case '5m': duration = 24 * 3600; break; // 24 hours
-      case '15m': duration = 24 * 3600; break; // 24 hours
-      case '1h': duration = 7 * 24 * 3600; break; // 7 days
-      default: duration = 24 * 3600; break;
-    }
+    const duration = getDataRangeDuration(interval);
     
     return {
       from: (now - duration).toString(),
@@ -75,22 +69,28 @@ export const useChartData = ({
       fromTimestamp: now - duration,
       toTimestamp: now
     };
-  }, [timeFrame]);
+  }, [interval]);
 
   // Memoize time range to prevent infinite re-renders
-  // Update every 5 minutes to get fresh data while avoiding constant re-renders
+  // Use different rounding intervals based on the chart interval
   const timeRange = useMemo(() => {
     const now = Math.floor(Date.now() / 1000);
-    const roundedNow = Math.floor(now / 300) * 300; // Round to nearest 5 minutes
     
-    let duration: number;
-    switch (timeFrame) {
-      case '1m': duration = 4 * 3600; break; // 4 hours
-      case '5m': duration = 24 * 3600; break; // 24 hours
-      case '15m': duration = 24 * 3600; break; // 24 hours
-      case '1h': duration = 7 * 24 * 3600; break; // 7 days
-      default: duration = 24 * 3600; break;
+    // Round to appropriate interval to avoid constant re-renders
+    let roundingInterval: number;
+    switch (interval) {
+      case '1m': roundingInterval = 60; break; // Round to nearest minute
+      case '5m': roundingInterval = 300; break; // Round to nearest 5 minutes
+      case '15m': roundingInterval = 900; break; // Round to nearest 15 minutes
+      case '1h': roundingInterval = 3600; break; // Round to nearest hour
+      case '4h': roundingInterval = 14400; break; // Round to nearest 4 hours
+      case '1d': roundingInterval = 86400; break; // Round to nearest day
+      case '1w': roundingInterval = 604800; break; // Round to nearest week
+      default: roundingInterval = 300; break;
     }
+    
+    const roundedNow = Math.floor(now / roundingInterval) * roundingInterval;
+    const duration = getDataRangeDuration(interval);
     
     return {
       from: (roundedNow - duration).toString(),
@@ -98,7 +98,7 @@ export const useChartData = ({
       fromTimestamp: roundedNow - duration,
       toTimestamp: roundedNow
     };
-  }, [timeFrame]);
+  }, [interval]);
 
   // Query OHLC data from subgraph
   const { 
@@ -109,7 +109,7 @@ export const useChartData = ({
   } = useQuery(GET_TOKEN_OHLC_DATA, {
     variables: {
       tokenId: tokenAddress.toLowerCase(),
-      interval: timeFrame,
+      interval: interval,
       from: timeRange.from,
       to: timeRange.to
     },
@@ -171,7 +171,7 @@ export const useChartData = ({
         const currentTimeRange = getTimeRange();
         const generated = generateOHLCFromTrades(
           trades, 
-          timeFrame,
+          interval,
           currentTimeRange.fromTimestamp,
           currentTimeRange.toTimestamp
         );
@@ -225,13 +225,13 @@ export const useChartData = ({
         priceChange: undefined,
       });
     }
-  }, [ohlcData, tradesData, latestPriceData, timeFrame, getTimeRange]);
+  }, [ohlcData, tradesData, latestPriceData, interval, getTimeRange]);
 
   // Auto-update effect
   useEffect(() => {
     if (!autoUpdate || !tokenAddress) return;
 
-    const interval = setInterval(async () => {
+    const intervalId = setInterval(async () => {
       try {
         await refetchLatestPrice();
         await refetchOHLC();
@@ -239,10 +239,10 @@ export const useChartData = ({
       } catch (error) {
         console.error('Auto-update error:', error);
       }
-    }, updateInterval);
+    }, actualUpdateInterval);
 
-    return () => clearInterval(interval);
-  }, [autoUpdate, tokenAddress, updateInterval, refetchLatestPrice, refetchOHLC, refetchTrades]);
+    return () => clearInterval(intervalId);
+  }, [autoUpdate, tokenAddress, actualUpdateInterval, refetchLatestPrice, refetchOHLC, refetchTrades]);
 
   // Manual refresh function
   const refresh = useCallback(async () => {

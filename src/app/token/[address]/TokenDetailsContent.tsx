@@ -16,6 +16,7 @@ import {
   Card,
   AddressLink
 } from '@/components';
+import { FiPieChart, FiActivity, FiAlignLeft } from 'react-icons/fi';
 
 interface TokenDetailsContentProps {
   address: string;
@@ -28,9 +29,9 @@ interface TabsProps {
 
 function Tabs({ activeTab, onTabChange }: TabsProps) {
   const tabs = [
-    { id: 'trades', label: 'Trades', icon: '📊' },
-    { id: 'holders', label: 'Holders', icon: '👥' },
-    { id: 'info', label: 'Info', icon: 'ℹ️' },
+    { id: 'trades', label: 'Trades', icon: <FiPieChart className="w-4 h-4" /> },
+    { id: 'holders', label: 'Holders', icon: <FiActivity className="w-4 h-4" /> },
+    { id: 'info', label: 'Info', icon: <FiAlignLeft className="w-4 h-4" /> },
   ];
 
   return (
@@ -40,7 +41,7 @@ function Tabs({ activeTab, onTabChange }: TabsProps) {
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
+            className={`flex items-center py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
               activeTab === tab.id
                 ? 'border-core-orange-500 text-core-orange-600 dark:text-core-orange-500'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-dark-text-secondary dark:hover:text-dark-text-primary'

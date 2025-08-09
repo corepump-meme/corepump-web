@@ -1,6 +1,6 @@
 import { formatEther } from 'viem';
 import { CandlestickData, HistogramData, Time } from 'lightweight-charts';
-import { TimeFrame } from './chartConfig';
+import { Interval, getIntervalSeconds } from './chartConfig';
 
 export interface TokenOHLC {
   id: string;
@@ -88,10 +88,11 @@ export const transformVolumeData = (ohlcData: TokenOHLC[]): HistogramData[] => {
 /**
  * Generate OHLC data from individual trades when subgraph data is not available
  * This is a fallback for tokens that don't have enough trading history
+ * Enhanced to handle all interval types including daily and weekly candles
  */
 export const generateOHLCFromTrades = (
   trades: Trade[], 
-  timeFrame: TimeFrame,
+  interval: Interval,
   startTime?: number,
   endTime?: number
 ): { candlesticks: CandlestickData[], volumes: HistogramData[] } => {
@@ -99,19 +100,38 @@ export const generateOHLCFromTrades = (
     return { candlesticks: [], volumes: [] };
   }
 
-  const timeFrameSeconds = getTimeFrameSeconds(timeFrame);
+  const intervalSeconds = getIntervalSeconds(interval);
   const now = Math.floor(Date.now() / 1000);
   const start = startTime || (now - (24 * 3600)); // Default to last 24 hours
   const end = endTime || now;
 
-  // Group trades by time intervals
+  // Group trades by time intervals with proper alignment
   const intervals = new Map<number, Trade[]>();
 
   trades.forEach(trade => {
     const timestamp = parseInt(trade.timestamp);
     if (timestamp < start || timestamp > end) return;
 
-    const intervalStart = Math.floor(timestamp / timeFrameSeconds) * timeFrameSeconds;
+    let intervalStart: number;
+
+    // Handle special alignment for daily and weekly intervals
+    if (interval === '1d') {
+      // Align to UTC midnight
+      const date = new Date(timestamp * 1000);
+      date.setUTCHours(0, 0, 0, 0);
+      intervalStart = Math.floor(date.getTime() / 1000);
+    } else if (interval === '1w') {
+      // Align to Monday UTC midnight
+      const date = new Date(timestamp * 1000);
+      const dayOfWeek = date.getUTCDay();
+      const daysToMonday = (dayOfWeek + 6) % 7; // Calculate days back to Monday
+      date.setUTCDate(date.getUTCDate() - daysToMonday);
+      date.setUTCHours(0, 0, 0, 0);
+      intervalStart = Math.floor(date.getTime() / 1000);
+    } else {
+      // Standard interval alignment
+      intervalStart = Math.floor(timestamp / intervalSeconds) * intervalSeconds;
+    }
     
     if (!intervals.has(intervalStart)) {
       intervals.set(intervalStart, []);
@@ -139,6 +159,7 @@ export const generateOHLCFromTrades = (
       const high = Math.max(...prices);
       const low = Math.min(...prices);
 
+      // Calculate volume-weighted average price for longer intervals
       const totalVolume = intervalTrades.reduce((sum, trade) => {
         return sum + parseFloat(formatEther(BigInt(trade.coreAmount)));
       }, 0);
@@ -156,10 +177,13 @@ export const generateOHLCFromTrades = (
         close,
       });
 
+      // Color volume bars based on price direction
+      const volumeColor = close >= open ? '#10b981' : '#ef4444'; // Green for up, red for down
+
       volumes.push({
         time: intervalStart as Time,
         value: totalVolume,
-        color: '#64748b',
+        color: volumeColor,
       });
     } catch (error) {
       console.warn('Error generating OHLC from trades:', error);
@@ -172,20 +196,40 @@ export const generateOHLCFromTrades = (
 /**
  * Fill missing intervals with previous close price
  * This ensures the chart doesn't have gaps during periods with no trading
+ * Enhanced to handle daily and weekly intervals properly
  */
 export const fillMissingCandles = (
   candlesticks: CandlestickData[],
-  timeFrame: TimeFrame,
+  interval: Interval,
   startTime: number,
   endTime: number
 ): CandlestickData[] => {
   if (candlesticks.length === 0) return [];
 
-  const timeFrameSeconds = getTimeFrameSeconds(timeFrame);
+  const intervalSeconds = getIntervalSeconds(interval);
   const filled: CandlestickData[] = [];
   
-  let currentTime = Math.floor(startTime / timeFrameSeconds) * timeFrameSeconds;
+  let currentTime: number;
   let lastClose = candlesticks[0].close;
+
+  // Handle special alignment for daily and weekly intervals
+  if (interval === '1d') {
+    // Start from UTC midnight of start date
+    const startDate = new Date(startTime * 1000);
+    startDate.setUTCHours(0, 0, 0, 0);
+    currentTime = Math.floor(startDate.getTime() / 1000);
+  } else if (interval === '1w') {
+    // Start from Monday UTC midnight of start week
+    const startDate = new Date(startTime * 1000);
+    const dayOfWeek = startDate.getUTCDay();
+    const daysToMonday = (dayOfWeek + 6) % 7;
+    startDate.setUTCDate(startDate.getUTCDate() - daysToMonday);
+    startDate.setUTCHours(0, 0, 0, 0);
+    currentTime = Math.floor(startDate.getTime() / 1000);
+  } else {
+    // Standard interval alignment
+    currentTime = Math.floor(startTime / intervalSeconds) * intervalSeconds;
+  }
 
   while (currentTime <= endTime) {
     const existingCandle = candlesticks.find(c => (c.time as number) === currentTime);
@@ -194,34 +238,35 @@ export const fillMissingCandles = (
       filled.push(existingCandle);
       lastClose = existingCandle.close;
     } else if (filled.length > 0) {
-      // Fill gap with flat candle at last close price
-      filled.push({
-        time: currentTime as Time,
-        open: lastClose,
-        high: lastClose,
-        low: lastClose,
-        close: lastClose,
-      });
+      // Skip filling gaps for longer intervals to avoid cluttering
+      if (interval === '1m' || interval === '5m' || interval === '15m') {
+        // Fill gap with flat candle at last close price
+        filled.push({
+          time: currentTime as Time,
+          open: lastClose,
+          high: lastClose,
+          low: lastClose,
+          close: lastClose,
+        });
+      }
     }
 
-    currentTime += timeFrameSeconds;
+    // Move to next interval with special handling for daily/weekly
+    if (interval === '1d') {
+      const nextDate = new Date(currentTime * 1000);
+      nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+      currentTime = Math.floor(nextDate.getTime() / 1000);
+    } else if (interval === '1w') {
+      const nextDate = new Date(currentTime * 1000);
+      nextDate.setUTCDate(nextDate.getUTCDate() + 7);
+      currentTime = Math.floor(nextDate.getTime() / 1000);
+    } else {
+      currentTime += intervalSeconds;
+    }
   }
 
   return filled;
 };
-
-/**
- * Get time frame duration in seconds
- */
-function getTimeFrameSeconds(timeFrame: TimeFrame): number {
-  switch (timeFrame) {
-    case '1m': return 60;
-    case '5m': return 300;
-    case '15m': return 900;
-    case '1h': return 3600;
-    default: return 300;
-  }
-}
 
 /**
  * Calculate price change percentage

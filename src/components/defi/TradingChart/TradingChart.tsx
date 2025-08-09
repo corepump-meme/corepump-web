@@ -13,7 +13,7 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { ChartControls, ChartLegend } from './ChartControls';
 import { useChartData } from './hooks/useChartData';
 import { 
-  TimeFrame, 
+  Interval, 
   getChartOptions, 
 } from './utils/chartConfig';
 import { TokenMetrics as TokenMetricsType } from '@/hooks/useTokenData';
@@ -84,7 +84,7 @@ export function TradingChart({
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   
-  const [timeFrame, setTimeFrame] = useState<TimeFrame>('5m');
+  const [interval, setInterval] = useState<Interval>('5m');
   const [isDark, setIsDark] = useState(false);
 
   // Get chart data
@@ -99,7 +99,7 @@ export function TradingChart({
     refresh
   } = useChartData({
     tokenAddress,
-    timeFrame,
+    interval,
     autoUpdate
   });
 
@@ -243,9 +243,9 @@ export function TradingChart({
     }
   }, [isDark]);
 
-  // Handle time frame change
-  const handleTimeFrameChange = useCallback((newTimeFrame: TimeFrame) => {
-    setTimeFrame(newTimeFrame);
+  // Handle interval change
+  const handleIntervalChange = useCallback((newInterval: Interval) => {
+    setInterval(newInterval);
   }, []);
 
   // Calculate total volume for legend
@@ -331,8 +331,8 @@ export function TradingChart({
               {tokenSymbol} / CORE
             </h3>
             <ChartControls
-              timeFrame={timeFrame}
-              onTimeFrameChange={handleTimeFrameChange}
+              interval={interval}
+              onIntervalChange={handleIntervalChange}
               loading={loading}
               onRefresh={refresh}
             />

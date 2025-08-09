@@ -1,34 +1,34 @@
 'use client';
 
 import React from 'react';
-import { TimeFrame, TIME_FRAME_OPTIONS } from './utils/chartConfig';
+import { Interval, INTERVAL_OPTIONS } from './utils/chartConfig';
 
 interface ChartControlsProps {
-  timeFrame: TimeFrame;
-  onTimeFrameChange: (timeFrame: TimeFrame) => void;
+  interval: Interval;
+  onIntervalChange: (interval: Interval) => void;
   loading?: boolean;
   onRefresh?: () => void;
   className?: string;
 }
 
 export function ChartControls({
-  timeFrame,
-  onTimeFrameChange,
+  interval,
+  onIntervalChange,
   loading = false,
   onRefresh,
   className = ''
 }: ChartControlsProps) {
   return (
     <div className={`flex items-center justify-between ${className}`}>
-      {/* Time Frame Selector */}
-      <div className="flex items-center space-x-1 bg-gray-100 dark:bg-dark-bg-secondary rounded-lg p-1">
-        {TIME_FRAME_OPTIONS.map((option) => (
+      {/* Interval Selector */}
+      <div className="flex items-center flex-wrap space-x-1 bg-gray-100 dark:bg-dark-bg-secondary rounded-lg p-1">
+        {INTERVAL_OPTIONS.map((option) => (
           <button
             key={option.value}
-            onClick={() => onTimeFrameChange(option.value as TimeFrame)}
+            onClick={() => onIntervalChange(option.value as Interval)}
             disabled={loading}
             className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${
-              timeFrame === option.value
+              interval === option.value
                 ? 'bg-white dark:bg-dark-surface text-core-orange-600 dark:text-core-orange-500 shadow-sm'
                 : 'text-gray-600 dark:text-dark-text-secondary hover:text-gray-800 dark:hover:text-dark-text-primary hover:bg-gray-50 dark:hover:bg-dark-surface-hover'
             } ${
