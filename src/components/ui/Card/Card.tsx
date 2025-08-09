@@ -24,9 +24,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const baseClasses = 'rounded-xl transition-all duration-200';
 
     const variantClasses = {
-      default: 'bg-white border border-gray-200 shadow-sm',
-      elevated: 'bg-white shadow-lg border border-gray-100',
-      outlined: 'bg-white border-2 border-gray-300',
+      default: 'bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary shadow-sm dark:shadow-sm-dark',
+      elevated: 'bg-surface-elevated dark:bg-dark-surface-elevated shadow-lg dark:shadow-md-dark border border-border-secondary dark:border-dark-border-secondary',
+      outlined: 'bg-surface-default dark:bg-dark-surface border-2 border-border-primary dark:border-dark-border-primary',
       ghost: 'bg-transparent'
     };
 
@@ -37,7 +37,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       lg: 'p-8'
     };
 
-    const hoverClasses = hover ? 'hover:shadow-lg hover:-translate-y-0.5 cursor-pointer' : '';
+    const hoverClasses = hover ? 'hover:shadow-lg dark:hover:shadow-md-dark hover:-translate-y-0.5 cursor-pointer' : '';
 
     const classes = [
       baseClasses,

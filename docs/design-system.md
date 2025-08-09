@@ -59,79 +59,209 @@
 
 ## Color Palette
 
+*Using modern Tailwind CSS v4 with OKLCH color space for better consistency and manipulation*
+
 ### Primary Colors
 
-#### Core Orange (Brand Primary)
+#### Core Orange (Brand Primary) - Complete Scale
 ```css
---core-orange: #FF6B35;
---core-orange-light: #FF8A5C;
---core-orange-dark: #E55A2B;
---core-orange-50: #FFF4F0;
---core-orange-100: #FFE4D6;
---core-orange-500: #FF6B35;
---core-orange-900: #B8441F;
+/* Modern OKLCH format for better color consistency */
+--color-core-orange-50: oklch(0.97 0.02 45);   /* Light tint */
+--color-core-orange-100: oklch(0.92 0.05 45);  /* Very light */
+--color-core-orange-200: oklch(0.85 0.08 45);  /* Light */
+--color-core-orange-300: oklch(0.78 0.12 45);  /* Medium light */
+--color-core-orange-400: oklch(0.70 0.15 45);  /* Medium */
+--color-core-orange-500: oklch(0.65 0.18 45);  /* Primary (#FF6B35 equivalent) */
+--color-core-orange-600: oklch(0.58 0.16 45);  /* Medium dark */
+--color-core-orange-700: oklch(0.50 0.14 45);  /* Dark */
+--color-core-orange-800: oklch(0.42 0.12 45);  /* Very dark */
+--color-core-orange-900: oklch(0.35 0.10 45);  /* Darkest */
+--color-core-orange-950: oklch(0.25 0.08 45);  /* Ultra dark */
 ```
 
-#### Bitcoin Gold (Secondary)
+#### Bitcoin Gold (Secondary) - Complete Scale
 ```css
---bitcoin-gold: #F7931A;
---bitcoin-gold-light: #FFB347;
---bitcoin-gold-dark: #D4780E;
---bitcoin-gold-50: #FFFBF5;
---bitcoin-gold-100: #FFF2E0;
---bitcoin-gold-500: #F7931A;
---bitcoin-gold-900: #B8690A;
+/* OKLCH format for Bitcoin Gold */
+--color-bitcoin-gold-50: oklch(0.98 0.02 85);   /* Light tint */
+--color-bitcoin-gold-100: oklch(0.95 0.05 85);  /* Very light */
+--color-bitcoin-gold-200: oklch(0.90 0.08 85);  /* Light */
+--color-bitcoin-gold-300: oklch(0.83 0.12 85);  /* Medium light */
+--color-bitcoin-gold-400: oklch(0.75 0.15 85);  /* Medium */
+--color-bitcoin-gold-500: oklch(0.68 0.18 85);  /* Primary (#F7931A equivalent) */
+--color-bitcoin-gold-600: oklch(0.60 0.16 85);  /* Medium dark */
+--color-bitcoin-gold-700: oklch(0.52 0.14 85);  /* Dark */
+--color-bitcoin-gold-800: oklch(0.44 0.12 85);  /* Very dark */
+--color-bitcoin-gold-900: oklch(0.36 0.10 85);  /* Darkest */
+--color-bitcoin-gold-950: oklch(0.26 0.08 85);  /* Ultra dark */
 ```
 
 ### Neutral Colors
 
-#### Grayscale System
+#### Grayscale System (OKLCH Format)
 ```css
---black: #000000;
---gray-900: #1A1A1A;
---gray-800: #2D2D2D;
---gray-700: #404040;
---gray-600: #525252;
---gray-500: #737373;
---gray-400: #A3A3A3;
---gray-300: #D4D4D4;
---gray-200: #E5E5E5;
---gray-100: #F5F5F5;
---white: #FFFFFF;
+/* Modern gray scale using OKLCH for consistent lightness perception */
+--color-gray-50: oklch(0.985 0.002 264.542);   /* Almost white */
+--color-gray-100: oklch(0.967 0.003 264.542);  /* Very light gray */
+--color-gray-200: oklch(0.928 0.006 264.531);  /* Light gray */
+--color-gray-300: oklch(0.872 0.010 258.338);  /* Medium light gray */
+--color-gray-400: oklch(0.707 0.022 261.325);  /* Medium gray */
+--color-gray-500: oklch(0.551 0.027 264.364);  /* True middle gray */
+--color-gray-600: oklch(0.446 0.030 256.802);  /* Medium dark gray */
+--color-gray-700: oklch(0.373 0.034 259.733);  /* Dark gray */
+--color-gray-800: oklch(0.278 0.033 256.848);  /* Very dark gray */
+--color-gray-900: oklch(0.210 0.034 264.665);  /* Almost black */
+--color-gray-950: oklch(0.130 0.028 261.692);  /* Ultra dark gray */
+
+/* Utility colors */
+--color-white: oklch(1 0 0);    /* Pure white */
+--color-black: oklch(0 0 0);    /* Pure black */
 ```
 
 ### Semantic Colors
 
-#### Success (Gains/Profits)
+#### Success (Gains/Profits) - Complete Scale
 ```css
---success: #00FF88;
---success-light: #33FF9F;
---success-dark: #00CC6A;
---success-bg: #F0FFF8;
+/* Success green using OKLCH */
+--color-success-50: oklch(0.97 0.03 155);   /* Light success background */
+--color-success-100: oklch(0.94 0.06 155);  /* Very light success */
+--color-success-200: oklch(0.88 0.10 155);  /* Light success */
+--color-success-300: oklch(0.80 0.15 155);  /* Medium light success */
+--color-success-400: oklch(0.70 0.20 155);  /* Medium success */
+--color-success-500: oklch(0.62 0.22 155);  /* Primary (#00FF88 equivalent) */
+--color-success-600: oklch(0.55 0.20 155);  /* Medium dark success */
+--color-success-700: oklch(0.47 0.17 155);  /* Dark success */
+--color-success-800: oklch(0.39 0.14 155);  /* Very dark success */
+--color-success-900: oklch(0.32 0.12 155);  /* Darkest success */
+--color-success-950: oklch(0.22 0.08 155);  /* Ultra dark success */
 ```
 
-#### Warning (Caution)
+#### Warning (Caution) - Complete Scale
 ```css
---warning: #FFB800;
---warning-light: #FFC933;
---warning-dark: #CC9300;
---warning-bg: #FFFBF0;
+/* Warning amber using OKLCH */
+--color-warning-50: oklch(0.98 0.02 80);    /* Light warning background */
+--color-warning-100: oklch(0.95 0.05 80);   /* Very light warning */
+--color-warning-200: oklch(0.90 0.10 80);   /* Light warning */
+--color-warning-300: oklch(0.83 0.15 80);   /* Medium light warning */
+--color-warning-400: oklch(0.75 0.18 80);   /* Medium warning */
+--color-warning-500: oklch(0.68 0.20 80);   /* Primary (#FFB800 equivalent) */
+--color-warning-600: oklch(0.60 0.18 80);   /* Medium dark warning */
+--color-warning-700: oklch(0.52 0.16 80);   /* Dark warning */
+--color-warning-800: oklch(0.44 0.14 80);   /* Very dark warning */
+--color-warning-900: oklch(0.36 0.12 80);   /* Darkest warning */
+--color-warning-950: oklch(0.26 0.08 80);   /* Ultra dark warning */
 ```
 
-#### Error (Losses/Danger)
+#### Error (Losses/Danger) - Complete Scale
 ```css
---error: #FF3B30;
---error-light: #FF6B5C;
---error-dark: #CC2F26;
---error-bg: #FFF5F5;
+/* Error red using OKLCH */
+--color-error-50: oklch(0.97 0.02 20);      /* Light error background */
+--color-error-100: oklch(0.93 0.05 20);     /* Very light error */
+--color-error-200: oklch(0.87 0.08 20);     /* Light error */
+--color-error-300: oklch(0.79 0.12 20);     /* Medium light error */
+--color-error-400: oklch(0.70 0.16 20);     /* Medium error */
+--color-error-500: oklch(0.62 0.19 20);     /* Primary (#FF3B30 equivalent) */
+--color-error-600: oklch(0.55 0.17 20);     /* Medium dark error */
+--color-error-700: oklch(0.47 0.15 20);     /* Dark error */
+--color-error-800: oklch(0.39 0.13 20);     /* Very dark error */
+--color-error-900: oklch(0.32 0.11 20);     /* Darkest error */
+--color-error-950: oklch(0.22 0.08 20);     /* Ultra dark error */
 ```
 
-#### Info (Neutral Information)
+#### Info (Neutral Information) - Complete Scale
 ```css
---info: #00D4FF;
---info-light: #33DDFF;
---info-dark: #00A8CC;
---info-bg: #F0FCFF;
+/* Info cyan using OKLCH */
+--color-info-50: oklch(0.97 0.02 200);      /* Light info background */
+--color-info-100: oklch(0.93 0.05 200);     /* Very light info */
+--color-info-200: oklch(0.87 0.08 200);     /* Light info */
+--color-info-300: oklch(0.79 0.12 200);     /* Medium light info */
+--color-info-400: oklch(0.70 0.16 200);     /* Medium info */
+--color-info-500: oklch(0.62 0.19 200);     /* Primary (#00D4FF equivalent) */
+--color-info-600: oklch(0.55 0.17 200);     /* Medium dark info */
+--color-info-700: oklch(0.47 0.15 200);     /* Dark info */
+--color-info-800: oklch(0.39 0.13 200);     /* Very dark info */
+--color-info-900: oklch(0.32 0.11 200);     /* Darkest info */
+--color-info-950: oklch(0.22 0.08 200);     /* Ultra dark info */
+```
+
+### System Colors (Automatic Light/Dark)
+
+#### Background Colors
+```css
+/* Automatic light/dark switching using modern Tailwind CSS v4 */
+--color-background-primary: light-dark(oklch(1 0 0), oklch(0.04 0 0));       /* Main background */
+--color-background-secondary: light-dark(oklch(0.96 0 0), oklch(0.07 0 0));   /* Secondary background */
+--color-background-tertiary: light-dark(oklch(0.90 0 0), oklch(0.10 0 0));    /* Tertiary background */
+```
+
+#### Surface Colors
+```css
+/* Card and component backgrounds */
+--color-surface-default: light-dark(oklch(1 0 0), oklch(0.12 0 0));           /* Default surface */
+--color-surface-elevated: light-dark(oklch(1 0 0), oklch(0.15 0 0));          /* Elevated surface */
+--color-surface-hover: light-dark(oklch(0.96 0 0), oklch(0.17 0 0));          /* Hover states */
+```
+
+#### Text Colors
+```css
+/* Text hierarchy with automatic theming */
+--color-text-primary: light-dark(oklch(0.10 0 0), oklch(1 0 0));              /* Primary text */
+--color-text-secondary: light-dark(oklch(0.32 0 0), oklch(0.90 0 0));         /* Secondary text */
+--color-text-tertiary: light-dark(oklch(0.45 0 0), oklch(0.70 0 0));          /* Tertiary text */
+--color-text-disabled: light-dark(oklch(0.64 0 0), oklch(0.40 0 0));          /* Disabled text */
+--color-text-inverse: light-dark(oklch(1 0 0), oklch(0.10 0 0));              /* Inverse text */
+```
+
+#### Border Colors
+```css
+/* Border and divider colors */
+--color-border-primary: light-dark(oklch(0.90 0 0), oklch(0.20 0 0));         /* Primary borders */
+--color-border-secondary: light-dark(oklch(0.83 0 0), oklch(0.17 0 0));       /* Secondary borders */
+--color-border-focus: var(--color-core-orange-500);                           /* Focus state borders */
+```
+
+### Traditional Dark Mode Colors
+
+#### Manual Dark Mode Colors (With Familiar Names)
+*These colors are available for manual dark mode usage with easy-to-remember names*
+
+```css
+/* Dark Backgrounds - Traditional dark theme backgrounds */
+--color-dark-bg-primary: oklch(0.04 0 0);      /* #0A0A0A - Main dark background */
+--color-dark-bg-secondary: oklch(0.07 0 0);    /* #111111 - Secondary dark background */
+--color-dark-bg-tertiary: oklch(0.10 0 0);     /* #1A1A1A - Tertiary dark background */
+
+/* Dark Surfaces - Card and component backgrounds in dark mode */
+--color-dark-surface: oklch(0.12 0 0);         /* #1E1E1E - Default dark surface */
+--color-dark-surface-elevated: oklch(0.15 0 0); /* #252525 - Elevated dark surface */
+--color-dark-surface-hover: oklch(0.17 0 0);   /* #2A2A2A - Hover state for dark surfaces */
+
+/* Dark Text Colors - Text colors for dark mode */
+--color-dark-text-primary: oklch(1 0 0);       /* #FFFFFF - Primary text on dark */
+--color-dark-text-secondary: oklch(0.90 0 0);  /* #E5E5E5 - Secondary text on dark */
+--color-dark-text-tertiary: oklch(0.70 0 0);   /* #B3B3B3 - Tertiary text on dark */
+--color-dark-text-disabled: oklch(0.40 0 0);   /* #666666 - Disabled text on dark */
+--color-dark-text-mono: oklch(0.94 0 0);       /* #F0F0F0 - Monospace text on dark */
+
+/* Dark Borders - Border colors for dark mode */
+--color-dark-border-primary: oklch(0.20 0 0);  /* #333333 - Primary border on dark */
+--color-dark-border-secondary: oklch(0.17 0 0); /* #2A2A2A - Secondary border on dark */
+
+/* Dark Semantic Colors - Status colors optimized for dark mode */
+--color-dark-success: oklch(0.65 0.15 155);    /* #00E676 - Success green for dark mode */
+--color-dark-success-bg: oklch(0.16 0.04 155); /* #0D2818 - Success background for dark */
+--color-dark-success-border: oklch(0.26 0.08 155); /* #1B4D2E - Success border for dark */
+
+--color-dark-warning: oklch(0.78 0.12 85);     /* #FFD54F - Warning amber for dark mode */
+--color-dark-warning-bg: oklch(0.16 0.03 85);  /* #2A2416 - Warning background for dark */
+--color-dark-warning-border: oklch(0.26 0.06 85); /* #4A3F1A - Warning border for dark */
+
+--color-dark-error: oklch(0.68 0.18 20);       /* #FF5252 - Error red for dark mode */
+--color-dark-error-bg: oklch(0.16 0.04 20);    /* #2A1616 - Error background for dark */
+--color-dark-error-border: oklch(0.26 0.08 20); /* #4A1F1F - Error border for dark */
+
+--color-dark-info: oklch(0.72 0.14 200);       /* #29B6F6 - Info cyan for dark mode */
+--color-dark-info-bg: oklch(0.16 0.03 200);    /* #16252A - Info background for dark */
+--color-dark-info-border: oklch(0.26 0.06 200); /* #1F3A4A - Info border for dark */
 ```
 
 ### Gradient System
@@ -1026,45 +1156,231 @@ font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
 
 ### Cards
 
-#### Basic Card
-```html
-<!-- Basic Card with Tailwind -->
-<div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
-  <h3 class="text-xl font-semibold mb-2">Card Title</h3>
-  <p class="text-gray-600">Card content goes here...</p>
-</div>
+#### Basic Card (React Component)
+```jsx
+// Using the modernized Card component with dark mode support
+import { Card } from '@/components/ui/Card';
+
+// Default card
+<Card className="mb-4">
+  <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">
+    Card Title
+  </h3>
+  <p className="text-text-secondary dark:text-dark-text-secondary">
+    Card content goes here...
+  </p>
+</Card>
+
+// Elevated card with hover effect
+<Card variant="elevated" hover={true}>
+  <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">
+    Elevated Card
+  </h3>
+  <p className="text-text-secondary dark:text-dark-text-secondary">
+    This card has enhanced shadows and hover effects.
+  </p>
+</Card>
+
+// Outlined card
+<Card variant="outlined" padding="lg">
+  <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">
+    Outlined Card
+  </h3>
+  <p className="text-text-secondary dark:text-dark-text-secondary">
+    This card has a prominent border.
+  </p>
+</Card>
 ```
 
-#### Token Card
-```html
-<!-- Token Card with Tailwind -->
-<div class="bg-white border border-gray-200 rounded-xl p-6 flex items-center gap-4 cursor-pointer transition-all duration-200 hover:border-core-orange-500 hover:shadow-lg hover:shadow-core-orange-500/10">
-  <!-- Token Icon -->
-  <div class="w-12 h-12 rounded-full bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 flex items-center justify-center text-white font-semibold">
-    P
-  </div>
-  
-  <!-- Token Info -->
-  <div class="flex-1">
-    <h4 class="text-xl font-medium">PUMP</h4>
-    <p class="text-sm text-gray-600">PumpCoin</p>
-  </div>
-  
-  <!-- Price Info -->
-  <div class="text-right">
-    <div class="text-2xl font-mono font-bold text-success-500">$0.0045</div>
-    <div class="text-sm text-success-500">+12.5%</div>
-  </div>
-</div>
+#### TokenCard Component (Dark Mode Ready)
+```jsx
+// Complete TokenCard implementation with dark mode
+import { TokenCard } from '@/components/defi/TokenCard';
+
+const tokenData = {
+  id: "pump-token-001",
+  name: "PumpCoin",
+  symbol: "PUMP",
+  description: "The ultimate fair launch token on Core Chain with anti-rug protection.",
+  creator: "0x1234567890abcdef1234567890abcdef12345678",
+  currentPrice: "0.0045",
+  totalCoreRaised: "125000.00",
+  tokensSold: "50000000",
+  graduated: false,
+  createdAt: "1704067200"
+};
+
+<TokenCard 
+  token={tokenData} 
+  priceChange={12.5}
+  onClick={() => navigate(`/token/${tokenData.id}`)}
+  className="mb-4"
+/>
+
+// Graduated token example
+const graduatedToken = {
+  ...tokenData,
+  graduated: true,
+  totalCoreRaised: "75000.00"
+};
+
+<TokenCard 
+  token={graduatedToken}
+  priceChange={-2.1}
+/>
 ```
 
-#### Stats Card
+#### Card Variants (CSS Classes)
 ```html
-<!-- Stats Card with Tailwind -->
-<div class="bg-white border border-gray-200 rounded-xl p-6 text-center">
+<!-- Modern Card with Dark Mode Support -->
+
+<!-- Default Card -->
+<div class="bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary rounded-xl p-6 shadow-sm dark:shadow-sm-dark transition-all duration-200">
+  <h3 class="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">Default Card</h3>
+  <p class="text-text-secondary dark:text-dark-text-secondary">Card content with proper dark mode support.</p>
+</div>
+
+<!-- Elevated Card -->
+<div class="bg-surface-elevated dark:bg-dark-surface-elevated border border-border-secondary dark:border-dark-border-secondary rounded-xl p-6 shadow-lg dark:shadow-md-dark transition-all duration-200">
+  <h3 class="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">Elevated Card</h3>
+  <p class="text-text-secondary dark:text-dark-text-secondary">Enhanced shadows and elevated appearance.</p>
+</div>
+
+<!-- Interactive Card -->
+<div class="bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary rounded-xl p-6 shadow-sm dark:shadow-sm-dark hover:shadow-lg dark:hover:shadow-md-dark hover:-translate-y-0.5 cursor-pointer transition-all duration-200">
+  <h3 class="text-xl font-semibold mb-2 text-text-primary dark:text-dark-text-primary">Interactive Card</h3>
+  <p class="text-text-secondary dark:text-dark-text-secondary">Hover effects work in both light and dark modes.</p>
+</div>
+
+<!-- Token Stats Card -->
+<div class="bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary rounded-xl p-6 text-center shadow-sm dark:shadow-sm-dark">
   <div class="text-3xl font-mono font-bold text-core-orange-500 mb-2">$2.4M</div>
-  <div class="text-sm text-gray-600 uppercase tracking-wider font-medium">Total Volume</div>
+  <div class="text-sm text-text-tertiary dark:text-dark-text-tertiary uppercase tracking-wider font-medium">Total Volume</div>
+  <div class="mt-2 flex items-center justify-center gap-1 text-success-500 dark:text-dark-success">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+    </svg>
+    <span class="text-sm">+15.3%</span>
+  </div>
 </div>
+```
+
+#### Token List Card Pattern
+```html
+<!-- Complete Token Card HTML Implementation -->
+<div class="bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary rounded-xl p-6 relative overflow-hidden hover:shadow-lg dark:hover:shadow-md-dark hover:-translate-y-0.5 cursor-pointer transition-all duration-200">
+  <!-- Graduation Badge -->
+  <div class="absolute top-4 right-4 bg-success-500 dark:bg-dark-success text-white text-xs font-medium px-2 py-1 rounded-full shadow-sm">
+    Graduated
+  </div>
+
+  <!-- Token Header -->
+  <div class="flex items-center gap-4 mb-4">
+    <!-- Token Icon -->
+    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 flex items-center justify-center text-white font-semibold text-lg">
+      P
+    </div>
+    
+    <!-- Token Info -->
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2">
+        <h3 class="font-semibold text-lg text-text-primary dark:text-dark-text-primary truncate">
+          PumpCoin
+        </h3>
+        <svg class="w-4 h-4 text-text-tertiary dark:text-dark-text-tertiary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m4-3h6v6m-11 5L21 3"/>
+        </svg>
+      </div>
+      <p class="text-sm text-text-secondary dark:text-dark-text-secondary font-medium">PUMP</p>
+      <p class="text-xs text-text-tertiary dark:text-dark-text-tertiary font-mono">
+        by 0x1234...5678
+      </p>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <p class="text-sm text-text-secondary dark:text-dark-text-secondary mb-4 line-clamp-2">
+    The ultimate fair launch token on Core Chain with anti-rug protection and community governance.
+  </p>
+
+  <!-- Price and Stats -->
+  <div class="space-y-3">
+    <!-- Current Price -->
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-text-secondary dark:text-dark-text-secondary">Price</span>
+      <div class="flex items-center gap-2">
+        <span class="text-price text-text-primary dark:text-dark-text-primary">
+          0.0045 CORE
+        </span>
+        <div class="flex items-center gap-1 text-sm text-success-500 dark:text-dark-success">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <span>+12.5%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market Cap -->
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-text-secondary dark:text-dark-text-secondary">Market Cap</span>
+      <span class="text-sm font-medium text-text-primary dark:text-dark-text-primary">
+        125.0K CORE
+      </span>
+    </div>
+
+    <!-- Progress to Graduation -->
+    <div class="space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-text-secondary dark:text-dark-text-secondary">Progress to DEX</span>
+        <span class="text-sm font-medium text-text-primary dark:text-dark-text-primary">
+          65.0%
+        </span>
+      </div>
+      <div class="w-full bg-surface-hover dark:bg-dark-surface-hover rounded-full h-2">
+        <div class="bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 h-2 rounded-full transition-all duration-300" style="width: 65%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Date -->
+  <div class="mt-4 pt-4 border-t border-border-secondary dark:border-dark-border-secondary">
+    <span class="text-xs text-text-tertiary dark:text-dark-text-tertiary">
+      Created January 1, 2024
+    </span>
+  </div>
+</div>
+```
+
+#### Card Component Props & Usage
+
+```typescript
+// Card Component Interface
+interface CardProps {
+  variant?: 'default' | 'elevated' | 'outlined' | 'ghost';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  hover?: boolean;
+  children: React.ReactNode;
+  className?: string;
+}
+
+// Usage Examples
+<Card variant="default" padding="md" hover={false}>
+  {/* Card content */}
+</Card>
+
+<Card variant="elevated" padding="lg" hover={true}>
+  {/* Interactive card with enhanced styling */}
+</Card>
+
+<Card variant="outlined" padding="sm">
+  {/* Card with prominent border */}
+</Card>
+
+<Card variant="ghost" padding="none">
+  {/* Transparent card for overlay content */}
+</Card>
 ```
 
 ### Navigation
@@ -1891,402 +2207,156 @@ font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
 
 ## Implementation Notes
 
-### CSS Custom Properties Setup
+### Modern Tailwind CSS v4 Implementation
+
+*CorePump uses the latest Tailwind CSS v4 with OKLCH color space and `@theme` blocks for maximum flexibility and consistency*
+
+#### CSS Implementation Using `@theme` Blocks
 ```css
-:root {
-  /* Brand Colors (consistent across themes) */
-  --core-orange: #FF6B35;
-  --core-orange-light: #FF8A5C;
-  --core-orange-dark: #E55A2B;
-  --bitcoin-gold: #F7931A;
-  --bitcoin-gold-light: #FFB347;
-  --bitcoin-gold-dark: #D4780E;
-  
-  /* Light Mode Colors (default) */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F5;
-  --bg-tertiary: #E5E5E5;
-  --surface: #FFFFFF;
-  --surface-elevated: #FFFFFF;
-  --surface-hover: #F5F5F5;
-  
-  --text-primary: #1A1A1A;
-  --text-secondary: #525252;
-  --text-tertiary: #737373;
-  --text-disabled: #A3A3A3;
-  --text-mono: #2D2D2D;
-  
-  --border-primary: #E5E5E5;
-  --border-secondary: #D4D4D4;
-  --border-focus: #FF6B35;
-  
-  /* Light Mode Semantic Colors */
-  --success: #00FF88;
-  --success-bg: #F0FFF8;
-  --success-border: #00CC6A;
-  --warning: #FFB800;
-  --warning-bg: #FFFBF0;
-  --warning-border: #CC9300;
-  --error: #FF3B30;
-  --error-bg: #FFF5F5;
-  --error-border: #CC2F26;
-  --info: #00D4FF;
-  --info-bg: #F0FCFF;
-  --info-border: #00A8CC;
-  
-  /* Light Mode Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-core: 0 2px 4px rgba(255, 107, 53, 0.2);
-  --shadow-core-lg: 0 4px 8px rgba(255, 107, 53, 0.3);
-  
-  /* Spacing System */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.25rem;  /* 20px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
-  --space-10: 2.5rem;  /* 40px */
-  --space-12: 3rem;    /* 48px */
-  --space-16: 4rem;    /* 64px */
-  --space-20: 5rem;    /* 80px */
-  --space-24: 6rem;    /* 96px */
-  
-  /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
-  
-  /* Animation System */
-  --duration-fast: 150ms;
-  --duration-normal: 200ms;
-  --duration-slow: 300ms;
-  --duration-slower: 500ms;
-  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+@import "tailwindcss";
 
-/* Dark Mode - System Preference */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode Backgrounds */
-    --bg-primary: #0A0A0A;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1A1A1A;
-    --surface: #1E1E1E;
-    --surface-elevated: #252525;
-    --surface-hover: #2A2A2A;
-    
-    /* Dark Mode Text */
-    --text-primary: #FFFFFF;
-    --text-secondary: #E5E5E5;
-    --text-tertiary: #B3B3B3;
-    --text-disabled: #666666;
-    --text-mono: #F0F0F0;
-    
-    /* Dark Mode Borders */
-    --border-primary: #333333;
-    --border-secondary: #2A2A2A;
-    --border-focus: #FF6B35;
-    
-    /* Dark Mode Semantic Colors */
-    --success: #00E676;
-    --success-bg: #0D2818;
-    --success-border: #1B4D2E;
-    --warning: #FFD54F;
-    --warning-bg: #2A2416;
-    --warning-border: #4A3F1A;
-    --error: #FF5252;
-    --error-bg: #2A1616;
-    --error-border: #4A1F1F;
-    --info: #29B6F6;
-    --info-bg: #16252A;
-    --info-border: #1F3A4A;
-    
-    /* Dark Mode Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
-    --shadow-core: 0 2px 8px rgba(255, 107, 53, 0.2);
-    --shadow-core-lg: 0 4px 12px rgba(255, 107, 53, 0.3);
-  }
-}
+/* Modern Tailwind CSS v4 approach using @theme blocks */
+@theme {
+  /* ===== BRAND COLORS ===== */
+  /* Core Orange - Primary brand color */
+  --color-core-orange-50: oklch(0.97 0.02 45);   /* Light tint */
+  --color-core-orange-100: oklch(0.92 0.05 45);  /* Very light */
+  --color-core-orange-200: oklch(0.85 0.08 45);  /* Light */
+  --color-core-orange-300: oklch(0.78 0.12 45);  /* Medium light */
+  --color-core-orange-400: oklch(0.70 0.15 45);  /* Medium */
+  --color-core-orange-500: oklch(0.65 0.18 45);  /* Primary (#FF6B35 equivalent) */
+  --color-core-orange-600: oklch(0.58 0.16 45);  /* Medium dark */
+  --color-core-orange-700: oklch(0.50 0.14 45);  /* Dark */
+  --color-core-orange-800: oklch(0.42 0.12 45);  /* Very dark */
+  --color-core-orange-900: oklch(0.35 0.10 45);  /* Darkest */
+  --color-core-orange-950: oklch(0.25 0.08 45);  /* Ultra dark */
 
-/* Dark Mode - Manual Toggle */
-[data-theme="dark"] {
-  /* Dark Mode Backgrounds */
-  --bg-primary: #0A0A0A;
-  --bg-secondary: #111111;
-  --bg-tertiary: #1A1A1A;
-  --surface: #1E1E1E;
-  --surface-elevated: #252525;
-  --surface-hover: #2A2A2A;
-  
-  /* Dark Mode Text */
-  --text-primary: #FFFFFF;
-  --text-secondary: #E5E5E5;
-  --text-tertiary: #B3B3B3;
-  --text-disabled: #666666;
-  --text-mono: #F0F0F0;
-  
-  /* Dark Mode Borders */
-  --border-primary: #333333;
-  --border-secondary: #2A2A2A;
-  --border-focus: #FF6B35;
-  
-  /* Dark Mode Semantic Colors */
-  --success: #00E676;
-  --success-bg: #0D2818;
-  --success-border: #1B4D2E;
-  --warning: #FFD54F;
-  --warning-bg: #2A2416;
-  --warning-border: #4A3F1A;
-  --error: #FF5252;
-  --error-bg: #2A1616;
-  --error-border: #4A1F1F;
-  --info: #29B6F6;
-  --info-bg: #16252A;
-  --info-border: #1F3A4A;
-  
-  /* Dark Mode Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
-  --shadow-core: 0 2px 8px rgba(255, 107, 53, 0.2);
-  --shadow-core-lg: 0 4px 12px rgba(255, 107, 53, 0.3);
-}
+  /* Bitcoin Gold - Secondary brand color */
+  --color-bitcoin-gold-50: oklch(0.98 0.02 85);   /* Light tint */
+  --color-bitcoin-gold-100: oklch(0.95 0.05 85);  /* Very light */
+  --color-bitcoin-gold-200: oklch(0.90 0.08 85);  /* Light */
+  --color-bitcoin-gold-300: oklch(0.83 0.12 85);  /* Medium light */
+  --color-bitcoin-gold-400: oklch(0.75 0.15 85);  /* Medium */
+  --color-bitcoin-gold-500: oklch(0.68 0.18 85);  /* Primary (#F7931A equivalent) */
+  --color-bitcoin-gold-600: oklch(0.60 0.16 85);  /* Medium dark */
+  --color-bitcoin-gold-700: oklch(0.52 0.14 85);  /* Dark */
+  --color-bitcoin-gold-800: oklch(0.44 0.12 85);  /* Very dark */
+  --color-bitcoin-gold-900: oklch(0.36 0.10 85);  /* Darkest */
+  --color-bitcoin-gold-950: oklch(0.26 0.08 85);  /* Ultra dark */
 
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  :root {
-    --border-primary: #000000;
-    --text-secondary: #000000;
-  }
-  
-  [data-theme="dark"] {
-    --bg-primary: #000000;
-    --text-primary: #FFFFFF;
-    --border-primary: #FFFFFF;
-    --text-secondary: #FFFFFF;
-  }
-}
+  /* ===== SEMANTIC COLORS ===== */
+  /* Success - Green (complete 50-950 scale) */
+  --color-success-50: oklch(0.97 0.03 155);
+  --color-success-100: oklch(0.94 0.06 155);
+  --color-success-200: oklch(0.88 0.10 155);
+  --color-success-300: oklch(0.80 0.15 155);
+  --color-success-400: oklch(0.70 0.20 155);
+  --color-success-500: oklch(0.62 0.22 155);  /* Primary */
+  --color-success-600: oklch(0.55 0.20 155);
+  --color-success-700: oklch(0.47 0.17 155);
+  --color-success-800: oklch(0.39 0.14 155);
+  --color-success-900: oklch(0.32 0.12 155);
+  --color-success-950: oklch(0.22 0.08 155);
 
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --duration-fast: 0.01ms;
-    --duration-normal: 0.01ms;
-    --duration-slow: 0.01ms;
-    --duration-slower: 0.01ms;
-  }
-  
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-```
+  /* Warning - Amber (complete 50-950 scale) */
+  --color-warning-50: oklch(0.98 0.02 80);
+  --color-warning-100: oklch(0.95 0.05 80);
+  --color-warning-200: oklch(0.90 0.10 80);
+  --color-warning-300: oklch(0.83 0.15 80);
+  --color-warning-400: oklch(0.75 0.18 80);
+  --color-warning-500: oklch(0.68 0.20 80);   /* Primary */
+  --color-warning-600: oklch(0.60 0.18 80);
+  --color-warning-700: oklch(0.52 0.16 80);
+  --color-warning-800: oklch(0.44 0.14 80);
+  --color-warning-900: oklch(0.36 0.12 80);
+  --color-warning-950: oklch(0.26 0.08 80);
 
-### Tailwind CSS Configuration
-```javascript
-// tailwind.config.js
-module.exports = {
-  darkMode: ['class', '[data-theme="dark"]'],
-  theme: {
-    extend: {
-      colors: {
-        // Brand Colors (consistent across themes)
-        'core-orange': {
-          50: '#FFF4F0',
-          100: '#FFE4D6',
-          500: '#FF6B35',
-          600: '#E55A2B',
-          900: '#B8441F',
-        },
-        'bitcoin-gold': {
-          50: '#FFFBF5',
-          100: '#FFF2E0',
-          500: '#F7931A',
-          600: '#D4780E',
-          900: '#B8690A',
-        },
-        
-        // Light Mode Semantic Colors
-        'success': {
-          50: '#F0FFF8',
-          500: '#00FF88',
-          600: '#00CC6A',
-          900: '#00A855',
-        },
-        'warning': {
-          50: '#FFFBF0',
-          500: '#FFB800',
-          600: '#CC9300',
-          900: '#996F00',
-        },
-        'error': {
-          50: '#FFF5F5',
-          500: '#FF3B30',
-          600: '#CC2F26',
-          900: '#99231C',
-        },
-        'info': {
-          50: '#F0FCFF',
-          500: '#00D4FF',
-          600: '#00A8CC',
-          900: '#007C99',
-        },
-        
-        // CSS Custom Properties Integration
-        background: {
-          primary: 'var(--bg-primary)',
-          secondary: 'var(--bg-secondary)',
-          tertiary: 'var(--bg-tertiary)',
-        },
-        surface: {
-          DEFAULT: 'var(--surface)',
-          elevated: 'var(--surface-elevated)',
-          hover: 'var(--surface-hover)',
-        },
-        text: {
-          primary: 'var(--text-primary)',
-          secondary: 'var(--text-secondary)',
-          tertiary: 'var(--text-tertiary)',
-          disabled: 'var(--text-disabled)',
-          mono: 'var(--text-mono)',
-        },
-        border: {
-          primary: 'var(--border-primary)',
-          secondary: 'var(--border-secondary)',
-          focus: 'var(--border-focus)',
-        },
-        
-        // Dark Mode Specific Colors
-        dark: {
-          'bg-primary': '#0A0A0A',
-          'bg-secondary': '#111111',
-          'bg-tertiary': '#1A1A1A',
-          'surface': '#1E1E1E',
-          'surface-elevated': '#252525',
-          'surface-hover': '#2A2A2A',
-          'text-primary': '#FFFFFF',
-          'text-secondary': '#E5E5E5',
-          'text-tertiary': '#B3B3B3',
-          'text-disabled': '#666666',
-          'text-mono': '#F0F0F0',
-          'border-primary': '#333333',
-          'border-secondary': '#2A2A2A',
-          'success': '#00E676',
-          'success-bg': '#0D2818',
-          'success-border': '#1B4D2E',
-          'warning': '#FFD54F',
-          'warning-bg': '#2A2416',
-          'warning-border': '#4A3F1A',
-          'error': '#FF5252',
-          'error-bg': '#2A1616',
-          'error-border': '#4A1F1F',
-          'info': '#29B6F6',
-          'info-bg': '#16252A',
-          'info-border': '#1F3A4A',
-        }
-      },
-      
-      fontFamily: {
-        'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', 'monospace'],
-      },
-      
-      fontSize: {
-        'h1': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'h2': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'h3': ['1.875rem', { lineHeight: '1.3', fontWeight: '600' }],
-        'h4': ['1.5rem', { lineHeight: '1.4', fontWeight: '600' }],
-        'h5': ['1.25rem', { lineHeight: '1.4', fontWeight: '500' }],
-        'h6': ['1.125rem', { lineHeight: '1.4', fontWeight: '500' }],
-        'price': ['1.5rem', { lineHeight: '1.2', fontWeight: '600' }],
-        'label': ['0.75rem', { lineHeight: '1.2', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.05em' }],
-      },
-      
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-      },
-      
-      animation: {
-        'spin-slow': 'spin 3s linear infinite',
-        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-in': 'slideIn 0.3s ease-out',
-        'success-pulse': 'successPulse 0.6s ease-out',
-        'shake': 'shake 0.5s ease-in-out',
-      },
-      
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideIn: {
-          '0%': { transform: 'translateX(100%)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-        successPulse: {
-          '0%': { transform: 'scale(0.95)', opacity: '0.8' },
-          '50%': { transform: 'scale(1.02)' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
-        },
-        shake: {
-          '0%, 100%': { transform: 'translateX(0)' },
-          '25%': { transform: 'translateX(-5px)' },
-          '75%': { transform: 'translateX(5px)' },
-        },
-      },
-      
-      boxShadow: {
-        'core': '0 2px 4px rgba(255, 107, 53, 0.2)',
-        'core-lg': '0 4px 8px rgba(255, 107, 53, 0.3)',
-        'core-dark': '0 2px 8px rgba(255, 107, 53, 0.2)',
-        'sm-dark': '0 1px 2px rgba(0, 0, 0, 0.3)',
-        'md-dark': '0 4px 8px rgba(0, 0, 0, 0.4)',
-        'lg-dark': '0 8px 16px rgba(0, 0, 0, 0.5)',
-      },
-      
-      transitionDuration: {
-        'fast': '150ms',
-        'normal': '200ms',
-        'slow': '300ms',
-        'slower': '500ms',
-      },
-      
-      transitionTimingFunction: {
-        'ease-out': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        'ease-in': 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',
-        'ease-in-out': 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-        'ease-bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-      },
-      
-      backdropBlur: {
-        'xs': '2px',
-      },
-      
-      screens: {
-        'xs': '475px',
-      },
-    }
-  },
-  
-  plugins: [
-    // Add any additional plugins here
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-  ],
-}
-```
+  /* Error - Red (complete 50-950 scale) */
+  --color-error-50: oklch(0.97 0.02 20);
+  --color-error-100: oklch(0.93 0.05 20);
+  --color-error-200: oklch(0.87 0.08 20);
+  --color-error-300: oklch(0.79 0.12 20);
+  --color-error-400: oklch(0.70 0.16 20);
+  --color-error-500: oklch(0.62 0.19 20);     /* Primary */
+  --color-error-600: oklch(0.55 0.17 20);
+  --color-error-700: oklch(0.47 0.15 20);
+  --color-error-800: oklch(0.39 0.13 20);
+  --color-error-900: oklch(0.32 0.11 20);
+  --color-error-950: oklch(0.22 0.08 20);
+
+  /* Info - Cyan (complete 50-950 scale) */
+  --color-info-50: oklch(0.97 0.02 200);
+  --color-info-100: oklch(0.93 0.05 200);
+  --color-info-200: oklch(0.87 0.08 200);
+  --color-info-300: oklch(0.79 0.12 200);
+  --color-info-400: oklch(0.70 0.16 200);
+  --color-info-500: oklch(0.62 0.19 200);     /* Primary */
+  --color-info-600: oklch(0.55 0.17 200);
+  --color-info-700: oklch(0.47 0.15 200);
+  --color-info-800: oklch(0.39 0.13 200);
+  --color-info-900: oklch(0.32 0.11 200);
+  --color-info-950: oklch(0.22 0.08 200);
+
+  /* ===== NEUTRAL COLORS ===== */
+  /* Gray - Using Tailwind's default OKLCH gray scale */
+  --color-gray-50: oklch(0.985 0.002 264.542);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.010 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray-500: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.030 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-800: oklch(0.278 0.033 256.848);
+  --color-gray-900: oklch(0.210 0.034 264.665);
+  --color-gray-950: oklch(0.130 0.028 261.692);
+
+  /* ===== SYSTEM COLORS (AUTOMATIC LIGHT/DARK) ===== */
+  /* Background colors with automatic theme switching */
+  --color-background-primary: light-dark(oklch(1 0 0), oklch(0.04 0 0));
+  --color-background-secondary: light-dark(oklch(0.96 0 0), oklch(0.07 0 0));
+  --color-background-tertiary: light-dark(oklch(0.90 0 0), oklch(0.10 0 0));
+
+  /* Surface colors */
+  --color-surface-default: light-dark(oklch(1 0 0), oklch(0.12 0 0));
+  --color-surface-elevated: light-dark(oklch(1 0 0), oklch(0.15 0 0));
+  --color-surface-hover: light-dark(oklch(0.96 0 0), oklch(0.17 0 0));
+
+  /* Text colors */
+  --color-text-primary: light-dark(oklch(0.10 0 0), oklch(1 0 0));
+  --color-text-secondary: light-dark(oklch(0.32 0 0), oklch(0.90 0 0));
+  --color-text-tertiary: light-dark(oklch(0.45 0 0), oklch(0.70 0 0));
+  --color-text-disabled: light-dark(oklch(0.64 0 0), oklch(0.40 0 0));
+  --color-text-inverse: light-dark(oklch(1 0 0), oklch(0.10 0 0));
+
+  /* Border colors */
+  --color-border-primary: light-dark(oklch(0.90 0 0), oklch(0.20 0 0));
+  --color-border-secondary: light-dark(oklch(0.83 0 0), oklch(0.17 0 0));
+  --color-border-focus: var(--color-core-orange-500);
+
+  /* ===== TRADITIONAL DARK MODE COLORS ===== */
+  /* Manual dark mode colors with familiar names */
+  --color-dark-bg-primary: oklch(0.04 0 0);      /* #0A0A0A */
+  --color-dark-bg-secondary: oklch(0.07 0 0);    /* #111111 */
+  --color-dark-bg-tertiary: oklch(0.10 0 0);     /* #1A1A1A */
+  --color-dark-surface: oklch(0.12 0 0);         /* #1E1E1E */
+  --color-dark-surface-elevated: oklch(0.15 0 0); /* #252525 */
+  --color-dark-surface-hover: oklch(0.17 0 0);   /* #2A2A2A */
+  --color-dark-text-primary: oklch(1 0 0);       /* #FFFFFF */
+  --color-dark-text-secondary: oklch(0.90 0 0);  /* #E5E5E5 */
+  --color-dark-text-tertiary: oklch(0.70 0 0);   /* #B3B3B3 */
+  --color-dark-text-disabled: oklch(0.40 0 0);   /* #666666 */
+  --color-dark-border-primary: oklch(0.20 0 0);  /* #333333 */
+  --color-dark-border-secondary: oklch(0.17 0 0); /* #2A2A2A */
+
+  /* Dark mode semantic colors */
+  --color-dark-success: oklch(0.65 0.15 155);    /* Optimized for dark backgrounds */
+  --color-dark-warning: oklch(0.78 0.12 85);
+  --color-dark-error: oklch(0.68 0.18 20);
+  --color-dark-info: oklch(0.72 0.14 200);
+
+  /* ===== UTILITY COLORS ===== */
+  --color
 
 ### React Component Examples
 ```jsx

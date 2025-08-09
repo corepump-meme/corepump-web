@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { createContact } from '../actions/notify';
+import { createContact } from '@/app/actions/notify';
 
 export default function NotifyForm() {
   const [email, setEmail] = useState('');

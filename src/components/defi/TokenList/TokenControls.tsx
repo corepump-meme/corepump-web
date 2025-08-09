@@ -58,7 +58,7 @@ export function TokenControls({
   };
 
   return (
-    <div className={`bg-white border-b border-gray-200 sticky top-18 z-20 ${className}`}>
+    <div className={`bg-background-primary dark:bg-dark-surface border-b border-border-primary dark:border-dark-border-primary sticky top-18 z-20 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex gap-4 items-center justify-between">
           {/* Search Input */}
@@ -75,8 +75,8 @@ export function TokenControls({
 
           {/* Sort Controls */}
           <div className="flex items-center gap-2">
-            <FiFilter className="h-5 w-5 text-gray-400" />
-            <span className="text-sm text-gray-600 hidden sm:inline">Sort by:</span>
+            <FiFilter className="h-5 w-5 text-text-tertiary dark:text-dark-text-tertiary" />
+            <span className="text-sm text-text-secondary dark:text-dark-text-secondary hidden sm:inline">Sort by:</span>
             
             {/* Desktop: Button Layout */}
             <div className="hidden sm:flex gap-1">
@@ -86,8 +86,8 @@ export function TokenControls({
                   onClick={() => handleSortChange(option.value)}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     sortBy === option.value
-                      ? 'bg-core-orange-500 text-white'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-core-orange-500 text-white shadow-sm'
+                      : 'text-text-primary dark:text-dark-text-primary hover:bg-surface-hover dark:hover:bg-dark-surface-hover'
                   }`}
                 >
                   {getSortLabel(option.value)}
@@ -103,7 +103,7 @@ export function TokenControls({
                   const [newSortBy, newDirection] = e.target.value.split('-') as [SortOption, SortDirection];
                   onSortChange(newSortBy, newDirection);
                 }}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-core-orange-500 focus:border-core-orange-500"
+                className="px-3 py-2 border border-border-primary dark:border-dark-border-primary rounded-lg text-sm bg-background-primary dark:bg-dark-surface text-text-primary dark:text-dark-text-primary focus:outline-none focus:ring-2 focus:ring-core-orange-500 focus:border-core-orange-500 transition-colors duration-200"
               >
                 {sortOptions.map((option) => (
                   <React.Fragment key={option.value}>
@@ -122,27 +122,29 @@ export function TokenControls({
 
         {/* Active Filters Display */}
         {(searchQuery || sortBy !== 'createdAt') && (
-          <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-gray-100">
+          <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-border-secondary dark:border-dark-border-secondary">
             {searchQuery && (
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-core-orange-100 text-core-orange-800">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-core-orange-100 dark:bg-core-orange-500/20 text-core-orange-800 dark:text-core-orange-300 border border-core-orange-200 dark:border-core-orange-500/30">
                 Search: "{searchQuery}"
                 <button
                   onClick={() => {
                     setLocalSearch('');
                     onSearchChange('');
                   }}
-                  className="ml-2 hover:text-core-orange-900"
+                  className="ml-2 hover:text-core-orange-900 dark:hover:text-core-orange-200 transition-colors duration-200"
+                  aria-label="Clear search"
                 >
                   ×
                 </button>
               </span>
             )}
             {sortBy !== 'createdAt' && (
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-surface-hover dark:bg-dark-surface-hover text-text-secondary dark:text-dark-text-secondary border border-border-secondary dark:border-dark-border-secondary">
                 Sort: {getSortLabel(sortBy)}
                 <button
                   onClick={() => onSortChange('createdAt', 'desc')}
-                  className="ml-2 hover:text-gray-900"
+                  className="ml-2 hover:text-text-primary dark:hover:text-dark-text-primary transition-colors duration-200"
+                  aria-label="Clear sort"
                 >
                   ×
                 </button>

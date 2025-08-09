@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaTelegram } from "react-icons/fa";
-import NotifyForm from "@/app/components/NotifyForm";
+import NotifyForm from "@/components/NotifyForm";
 
 export default function CorePump() {
   return (

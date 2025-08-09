@@ -25,7 +25,7 @@ export function TokenListItem({ token }: TokenListItemProps) {
 
   return (
     <Link href={`/token/${token.id}`}>
-      <div className="bg-white border border-gray-200 rounded-xl p-6 hover:border-core-orange-500 hover:shadow-lg hover:shadow-core-orange-500/10 transition-all duration-200 cursor-pointer">
+      <div className="bg-surface-default dark:bg-dark-surface border border-border-primary dark:border-dark-border-primary rounded-xl p-6 hover:border-core-orange-500 hover:shadow-lg hover:shadow-core-orange-500/10 dark:hover:shadow-md-dark transition-all duration-200 cursor-pointer">
         {/* Token Header */}
         <div className="flex items-center gap-4 mb-4">
           {/* Token Icon */}
@@ -49,21 +49,21 @@ export function TokenListItem({ token }: TokenListItemProps) {
           
           {/* Token Info */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-gray-900 truncate">
+            <h3 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary truncate">
               {token.name}
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-text-secondary dark:text-dark-text-secondary">
               {token.symbol}
             </p>
           </div>
 
           {/* Status Badge */}
           {token.graduated ? (
-            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-success-500 bg-success-50">
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-success-500 dark:text-dark-success bg-success-50 dark:bg-dark-success-bg border border-success-200 dark:border-dark-success-border">
               Graduated
             </span>
           ) : (
-            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-info-500 bg-info-50">
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-info-500 dark:text-dark-info bg-info-50 dark:bg-dark-info-bg border border-info-200 dark:border-dark-info-border">
               Active
             </span>
           )}
@@ -73,14 +73,14 @@ export function TokenListItem({ token }: TokenListItemProps) {
         <div className="space-y-3">
           {/* Price and Change */}
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Price</span>
+            <span className="text-sm text-text-secondary dark:text-dark-text-secondary">Price</span>
             <div className="text-right">
-              <div className="font-mono text-sm font-medium">
+              <div className="font-mono text-sm font-medium text-text-primary dark:text-dark-text-primary">
                 {formatBigIntToFixed(currentPrice)} CORE
               </div>
               {priceChangePercent !== 0 && (
                 <div className={`text-xs ${
-                  priceChangePercent >= 0 ? 'text-success-500' : 'text-error-500'
+                  priceChangePercent >= 0 ? 'text-success-500 dark:text-dark-success' : 'text-error-500 dark:text-dark-error'
                 }`}>
                   {formatPercentage(priceChangePercent)}
                 </div>
@@ -90,8 +90,8 @@ export function TokenListItem({ token }: TokenListItemProps) {
 
           {/* Market Cap */}
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Market Cap</span>
-            <span className="font-mono text-sm font-medium">
+            <span className="text-sm text-text-secondary dark:text-dark-text-secondary">Market Cap</span>
+            <span className="font-mono text-sm font-medium text-text-primary dark:text-dark-text-primary">
               {formatCurrency(token.totalCoreRaised)}
             </span>
           </div>
@@ -100,10 +100,10 @@ export function TokenListItem({ token }: TokenListItemProps) {
           {!token.graduated && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Progress to DEX</span>
-                <span className="font-medium">{Math.min(progress, 100).toFixed(1)}%</span>
+                <span className="text-text-secondary dark:text-dark-text-secondary">Progress to DEX</span>
+                <span className="font-medium text-text-primary dark:text-dark-text-primary">{Math.min(progress, 100).toFixed(1)}%</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-surface-hover dark:bg-dark-surface-hover rounded-full h-2">
                 <div
                   className="bg-gradient-to-r from-core-orange-500 to-bitcoin-gold-500 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${Math.min(progress, 100)}%` }}
@@ -113,7 +113,7 @@ export function TokenListItem({ token }: TokenListItemProps) {
           )}
 
           {/* Created Time */}
-          <div className="flex justify-between items-center text-xs text-gray-500">
+          <div className="flex justify-between items-center text-xs text-text-tertiary dark:text-dark-text-tertiary">
             <span>Created</span>
             <span>{getTimeAgo(token.createdAt)}</span>
           </div>
@@ -121,8 +121,8 @@ export function TokenListItem({ token }: TokenListItemProps) {
 
         {/* Description Preview */}
         {token.description && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <p className="text-sm text-gray-600 line-clamp-2">
+          <div className="mt-4 pt-4 border-t border-border-secondary dark:border-dark-border-secondary">
+            <p className="text-sm text-text-secondary dark:text-dark-text-secondary line-clamp-2">
               {token.description}
             </p>
           </div>

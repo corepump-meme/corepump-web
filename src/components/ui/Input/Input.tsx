@@ -67,7 +67,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         
         <div className="relative">
           {LeftIcon && (
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-dark-text-tertiary">
               <LeftIcon className="w-5 h-5" />
             </div>
           )}
