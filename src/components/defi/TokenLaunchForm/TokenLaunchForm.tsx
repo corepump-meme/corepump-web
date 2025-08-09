@@ -160,38 +160,38 @@ export function TokenLaunchForm() {
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
+        <h1 className="text-4xl font-bold text-text-primary dark:text-dark-text-primary tracking-tight">
           Launch Your Token
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-xl text-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto">
           Create a fair launch token with built-in anti-rug protection on Core Chain
         </p>
       </div>
 
       {/* Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="text-center p-6 bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 rounded-xl border border-core-orange-200">
-          <div className="w-12 h-12 bg-core-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div className="text-center p-6 bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10 rounded-xl border border-core-orange-200 dark:border-core-orange-500/30">
+          <div className="w-12 h-12 bg-core-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
             <FiShield className="w-6 h-6 text-white" />
           </div>
-          <h3 className="font-semibold text-gray-900 mb-2">Anti-Rug Protection</h3>
-          <p className="text-sm text-gray-600">Ownership renounced, LP tokens burned automatically</p>
+          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Anti-Rug Protection</h3>
+          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Ownership renounced, LP tokens burned automatically</p>
         </div>
 
-        <div className="text-center p-6 bg-gradient-to-br from-success-50 to-info-50 rounded-xl border border-success-200">
-          <div className="w-12 h-12 bg-success-500 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div className="text-center p-6 bg-gradient-to-br from-success-50 to-info-50 dark:from-success-500/10 dark:to-info-500/10 rounded-xl border border-success-200 dark:border-dark-success-border">
+          <div className="w-12 h-12 bg-success-500 dark:bg-dark-success rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
             <FiTrendingUp className="w-6 h-6 text-white" />
           </div>
-          <h3 className="font-semibold text-gray-900 mb-2">Fair Launch</h3>
-          <p className="text-sm text-gray-600">4% max purchase limit, bonding curve pricing</p>
+          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Fair Launch</h3>
+          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">4% max purchase limit, bonding curve pricing</p>
         </div>
 
-        <div className="text-center p-6 bg-gradient-to-br from-bitcoin-gold-50 to-warning-50 rounded-xl border border-bitcoin-gold-200">
-          <div className="w-12 h-12 bg-bitcoin-gold-500 rounded-full flex items-center justify-center mx-auto mb-3">
+        <div className="text-center p-6 bg-gradient-to-br from-bitcoin-gold-50 to-warning-50 dark:from-bitcoin-gold-500/10 dark:to-warning-500/10 rounded-xl border border-bitcoin-gold-200 dark:border-bitcoin-gold-500/30">
+          <div className="w-12 h-12 bg-bitcoin-gold-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
             <FiZap className="w-6 h-6 text-white" />
           </div>
-          <h3 className="font-semibold text-gray-900 mb-2">Auto Graduation</h3>
-          <p className="text-sm text-gray-600">Graduates to DEX at $50K market cap</p>
+          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Auto Graduation</h3>
+          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Graduates to DEX at $50K market cap</p>
         </div>
       </div>
 
@@ -209,7 +209,7 @@ export function TokenLaunchForm() {
 
           {/* Basic Token Info */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            <h3 className="text-xl font-semibold text-text-primary dark:text-dark-text-primary border-b border-border-secondary dark:border-dark-border-secondary pb-2">
               Token Information
             </h3>
 
@@ -235,7 +235,7 @@ export function TokenLaunchForm() {
             </div>
 
             <div>
-              <label className="text-label text-gray-700 block mb-2">
+              <label className="text-label text-text-secondary dark:text-dark-text-secondary block mb-2">
                 Description (Optional)
               </label>
               <textarea
@@ -245,13 +245,13 @@ export function TokenLaunchForm() {
                 maxLength={500}
                 placeholder="Describe your token and its purpose..."
               />
-              <p className="text-xs text-gray-500 mt-1">Maximum 500 characters</p>
+              <p className="text-xs text-text-tertiary dark:text-dark-text-tertiary mt-1">Maximum 500 characters</p>
             </div>
           </div>
 
           {/* Social Links */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            <h3 className="text-xl font-semibold text-text-primary dark:text-dark-text-primary border-b border-border-secondary dark:border-dark-border-secondary pb-2">
               Social Links (Optional)
             </h3>
 
@@ -282,27 +282,27 @@ export function TokenLaunchForm() {
 
           {/* Token Economics */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            <h3 className="text-xl font-semibold text-text-primary dark:text-dark-text-primary border-b border-border-secondary dark:border-dark-border-secondary pb-2">
               Token Economics
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">Total Supply</h4>
-                <p className="text-2xl font-mono font-bold text-gray-900">1,000,000,000</p>
-                <p className="text-sm text-gray-600">Fixed supply, no inflation</p>
+              <div className="bg-surface-hover dark:bg-dark-surface-hover rounded-lg p-4 border border-border-secondary/50 dark:border-dark-border-secondary/50">
+                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Total Supply</h4>
+                <p className="text-2xl font-mono font-bold text-text-primary dark:text-dark-text-primary">1,000,000,000</p>
+                <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Fixed supply, no inflation</p>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-2">Initial Distribution</h4>
+              <div className="bg-surface-hover dark:bg-dark-surface-hover rounded-lg p-4 border border-border-secondary/50 dark:border-dark-border-secondary/50">
+                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Initial Distribution</h4>
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Bonding Curve:</span>
-                    <span className="font-medium">80%</span>
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Bonding Curve:</span>
+                    <span className="font-medium text-text-primary dark:text-dark-text-primary">80%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Reserved:</span>
-                    <span className="font-medium">20%</span>
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Reserved:</span>
+                    <span className="font-medium text-text-primary dark:text-dark-text-primary">20%</span>
                   </div>
                 </div>
               </div>
@@ -310,21 +310,21 @@ export function TokenLaunchForm() {
           </div>
 
           {/* Launch Fee */}
-          <div className="bg-gradient-to-r from-core-orange-50 to-bitcoin-gold-50 border-2 border-core-orange-200 rounded-xl p-6">
+          <div className="bg-gradient-to-r from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10 border-2 border-core-orange-200 dark:border-core-orange-500/30 rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h4 className="text-lg font-semibold text-gray-900">Launch Fee</h4>
-                <p className="text-sm text-gray-600">One-time fee to deploy your token</p>
+                <h4 className="text-lg font-semibold text-text-primary dark:text-dark-text-primary">Launch Fee</h4>
+                <p className="text-sm text-text-secondary dark:text-dark-text-secondary">One-time fee to deploy your token</p>
               </div>
               <div className="text-right">
                 <div className="text-3xl font-mono font-bold text-core-orange-500">1 CORE</div>
-                <div className="text-sm text-gray-600">Non-refundable</div>
+                <div className="text-sm text-text-secondary dark:text-dark-text-secondary">Non-refundable</div>
               </div>
             </div>
             
-            <div className="bg-white/50 rounded-lg p-4">
-              <h5 className="font-medium text-gray-900 mb-2">What you get:</h5>
-              <ul className="text-sm text-gray-700 space-y-1">
+            <div className="bg-white/50 dark:bg-dark-surface/50 rounded-lg p-4 border border-white/20 dark:border-dark-border-secondary/20">
+              <h5 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">What you get:</h5>
+              <ul className="text-sm text-text-secondary dark:text-dark-text-secondary space-y-1">
                 <li>• Immutable smart contract deployment</li>
                 <li>• Built-in anti-rug protection</li>
                 <li>• Bonding curve price discovery</li>
@@ -335,16 +335,16 @@ export function TokenLaunchForm() {
           </div>
 
           {/* Terms Acceptance */}
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-start gap-3 p-4 bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50">
             <input
               type="checkbox"
               name="acceptTerms"
               required
-              className="mt-1 w-5 h-5 text-core-orange-500 border-gray-300 rounded focus:ring-core-orange-500 focus:ring-2"
+              className="mt-1 w-5 h-5 text-core-orange-500 border-border-primary dark:border-dark-border-primary rounded focus:ring-core-orange-500 focus:ring-2 bg-background-primary dark:bg-dark-surface"
             />
-            <label className="text-sm text-gray-700 leading-relaxed">
+            <label className="text-sm text-text-primary dark:text-dark-text-primary leading-relaxed">
               I understand and agree that:
-              <ul className="mt-2 space-y-1 text-xs text-gray-600">
+              <ul className="mt-2 space-y-1 text-xs text-text-secondary dark:text-dark-text-secondary">
                 <li>• The launch fee of 1 CORE is non-refundable</li>
                 <li>• Token ownership will be immediately renounced upon creation</li>
                 <li>• The token contract will be immutable and cannot be modified</li>
@@ -357,10 +357,10 @@ export function TokenLaunchForm() {
           {/* Wallet Connection */}
           {!isConnected || !canLaunch ? (
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Connect Your Wallet</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-1">Connect Your Wallet</h4>
+                  <p className="text-sm text-text-secondary dark:text-dark-text-secondary">
                     {!isConnected 
                       ? "Connect your wallet to launch tokens on Core Chain"
                       : !isCorrectChain
@@ -404,9 +404,9 @@ export function TokenLaunchForm() {
 
               {/* Transaction Status */}
               {txHash && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-medium text-blue-900 mb-2">Transaction Submitted</h4>
-                  <div className="space-y-2 text-sm text-blue-800">
+                <div className="bg-info-50 dark:bg-dark-info-bg border border-info-200 dark:border-dark-info-border rounded-lg p-4">
+                  <h4 className="font-medium text-info-900 dark:text-dark-info mb-2">Transaction Submitted</h4>
+                  <div className="space-y-2 text-sm text-info-800 dark:text-dark-info">
                     <p>Transaction hash: {txHash}</p>
                     {isConfirming && <p>Waiting for confirmation...</p>}
                     {isSuccess && tokenAddress && (
@@ -436,7 +436,7 @@ export function TokenLaunchForm() {
       </Card>
 
       {/* Disclaimer */}
-      <div className="text-center text-xs text-gray-500 max-w-2xl mx-auto">
+      <div className="text-center text-xs text-text-tertiary dark:text-dark-text-tertiary max-w-2xl mx-auto">
         <p>
           By launching a token on CorePump, you acknowledge that you understand the risks involved 
           in cryptocurrency trading and token creation. CorePump is not responsible for the success 
