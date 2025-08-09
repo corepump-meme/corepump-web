@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV === 'production' 
-    ? process.env.NEXT_PUBLIC_SUBGRAPH_URL_MAINNET
+    ? process.env.NEXT_PUBLIC_SUBGRAPH_URL_TESTNET // NEXT_PUBLIC_SUBGRAPH_URL_MAINNET
     : process.env.NEXT_PUBLIC_SUBGRAPH_URL_TESTNET,
 });
 
