@@ -118,7 +118,7 @@ export function TickerActivityItem({ activity, index }: TickerActivityItemProps)
               alt={token.name}
               width={20}
               height={20}
-              className="w-5 h-5 rounded-full object-cover ring-1 ring-white/20"
+              className="w-5 h-5 rounded-full object-cover ring-1 ring-gray-300"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
               }}
@@ -149,9 +149,9 @@ export function TickerActivityItem({ activity, index }: TickerActivityItemProps)
 
           {/* Amount */}
           {coreAmount && (
-            <span className="text-[10px] text-gray-300 ml-auto">
+            <span className="text-[10px] text-gray-700 ml-auto">
               <span className={styles.textColor}>{formatAmount(coreAmount)}</span>
-              <span className="text-gray-400 ml-0.5">CORE</span>
+              <span className="text-gray-600 ml-0.5">CORE</span>
             </span>
           )}
         </div>

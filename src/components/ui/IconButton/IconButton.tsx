@@ -35,6 +35,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     };
 
     const sizeClasses = {
+      none: '',
       sm: 'p-2',
       md: 'p-3',
       lg: 'p-4'

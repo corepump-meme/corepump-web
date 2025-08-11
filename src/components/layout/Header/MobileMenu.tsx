@@ -68,7 +68,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
       {/* Hamburger Button */}
       <IconButton
         icon={FiMenu}
-        size="md"
+        size="sm"
         variant="ghost"
         onClick={() => setIsOpen(true)}
         aria-label="Open navigation menu"

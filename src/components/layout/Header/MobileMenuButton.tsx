@@ -16,7 +16,7 @@ const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({ className = '' }) =
     <div className={`md:hidden ${className}`}>
       <IconButton
         icon={FiMenu}
-        size="md"
+        size="sm"
         variant="ghost"
         onClick={openMenu}
         aria-label="Open navigation menu"
