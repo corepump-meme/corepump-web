@@ -119,7 +119,7 @@ export const ConnectedWalletButton = React.forwardRef<
       iconPosition="left"
       className={className}
     >
-      {isPending ? 'Connecting...' : 'Connect Wallet'}
+      {isPending ? 'Connecting...' : 'Connect'}
     </Button>
   );
 });

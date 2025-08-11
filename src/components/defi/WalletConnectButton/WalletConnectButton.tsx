@@ -124,7 +124,7 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
       className={className}
       disabled={!onConnect}
     >
-      {loading ? 'Connecting...' : 'Connect Wallet'}
+      {loading ? 'Connecting...' : 'Connect'}
     </Button>
   );
 };
