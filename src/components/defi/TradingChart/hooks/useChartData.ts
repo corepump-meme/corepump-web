@@ -71,22 +71,21 @@ export const useChartData = ({
     };
   }, [interval]);
 
-  // Memoize time range to prevent infinite re-renders
-  // Use different rounding intervals based on the chart interval
+  // Stable time range - only recalculate when interval changes, not on every render
   const timeRange = useMemo(() => {
     const now = Math.floor(Date.now() / 1000);
     
-    // Round to appropriate interval to avoid constant re-renders
+    // Use much longer rounding intervals to prevent constant re-renders
     let roundingInterval: number;
     switch (interval) {
-      case '1m': roundingInterval = 60; break; // Round to nearest minute
-      case '5m': roundingInterval = 300; break; // Round to nearest 5 minutes
-      case '15m': roundingInterval = 900; break; // Round to nearest 15 minutes
-      case '1h': roundingInterval = 3600; break; // Round to nearest hour
-      case '4h': roundingInterval = 14400; break; // Round to nearest 4 hours
-      case '1d': roundingInterval = 86400; break; // Round to nearest day
-      case '1w': roundingInterval = 604800; break; // Round to nearest week
-      default: roundingInterval = 300; break;
+      case '1m': roundingInterval = 300; break; // Round to 5 minutes
+      case '5m': roundingInterval = 900; break; // Round to 15 minutes
+      case '15m': roundingInterval = 3600; break; // Round to 1 hour
+      case '1h': roundingInterval = 14400; break; // Round to 4 hours
+      case '4h': roundingInterval = 86400; break; // Round to 1 day
+      case '1d': roundingInterval = 86400; break; // Round to 1 day
+      case '1w': roundingInterval = 604800; break; // Round to 1 week
+      default: roundingInterval = 3600; break; // Default to 1 hour
     }
     
     const roundedNow = Math.floor(now / roundingInterval) * roundingInterval;
@@ -98,7 +97,7 @@ export const useChartData = ({
       fromTimestamp: roundedNow - duration,
       toTimestamp: roundedNow
     };
-  }, [interval]);
+  }, [interval]); // Only depend on interval, not time
 
   // Query OHLC data from subgraph
   const { 
@@ -227,19 +226,27 @@ export const useChartData = ({
     }
   }, [ohlcData, tradesData, latestPriceData, interval, getTimeRange]);
 
-  // Auto-update effect
+  // Auto-update effect - much less aggressive polling
   useEffect(() => {
     if (!autoUpdate || !tokenAddress) return;
 
+    // Use minimum 30 second interval regardless of chart interval to prevent conflicts
+    const safeUpdateInterval = Math.max(actualUpdateInterval, 30000);
+    
     const intervalId = setInterval(async () => {
       try {
+        // Only update latest price frequently, not full data
         await refetchLatestPrice();
-        await refetchOHLC();
-        await refetchTrades();
+        
+        // Update full data less frequently
+        if (Date.now() % (safeUpdateInterval * 4) < safeUpdateInterval) {
+          await refetchOHLC();
+          await refetchTrades();
+        }
       } catch (error) {
         console.error('Auto-update error:', error);
       }
-    }, actualUpdateInterval);
+    }, safeUpdateInterval);
 
     return () => clearInterval(intervalId);
   }, [autoUpdate, tokenAddress, actualUpdateInterval, refetchLatestPrice, refetchOHLC, refetchTrades]);

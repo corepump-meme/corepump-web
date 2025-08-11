@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery, ApolloError } from '@apollo/client';
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { GET_TOKEN_DETAILS, GET_TOKEN_METRICS } from '@/queries/tokens';
 import { formatBigIntToFixed, safeBigIntOperation, formatNumber } from '@/lib/bigint-utils';
 import { Token, Trade, TokenHolder } from '@/types/graphql';
@@ -32,8 +32,6 @@ export interface UseTokenDataReturn {
 const GRADUATION_THRESHOLD = BigInt("50000000000000000000000"); // 50K CORE in wei
 
 export function useTokenData(tokenAddress: string): UseTokenDataReturn {
-  const [pollingInterval, setPollingInterval] = useState(5000);
-
   // Get current timestamp for 24h calculations
   const from24h = Math.floor(Date.now() / 1000) - 86400;
 
@@ -42,13 +40,12 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
     data: tokenData, 
     loading: tokenLoading, 
     error: tokenError,
-    refetch: refetchToken,
-    startPolling: startTokenPolling,
-    stopPolling: stopTokenPolling
+    refetch: refetchToken
   } = useQuery(GET_TOKEN_DETAILS, {
     variables: { tokenId: tokenAddress },
     skip: !tokenAddress,
     errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network',
   });
 
   // Metrics query for 24h data
@@ -56,9 +53,7 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
     data: metricsData, 
     loading: metricsLoading,
     error: metricsError,
-    refetch: refetchMetrics,
-    startPolling: startMetricsPolling,
-    stopPolling: stopMetricsPolling
+    refetch: refetchMetrics
   } = useQuery(GET_TOKEN_METRICS, {
     variables: { 
       tokenId: tokenAddress,
@@ -66,6 +61,7 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
     },
     skip: !tokenAddress,
     errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network',
   });
 
   // Calculate metrics from the data
@@ -139,39 +135,6 @@ export function useTokenData(tokenAddress: string): UseTokenDataReturn {
       formattedVirtualLiquidity: formatBigIntToFixed(virtualLiquidity, 18, 6),
     };
   }, [tokenData, metricsData]);
-
-  // Adjust polling based on token status
-  useEffect(() => {
-    const token = tokenData?.token;
-    if (token) {
-      const interval = token.graduated ? 30000 : 5000; // 30s for graduated, 5s for active
-      setPollingInterval(interval);
-      
-      startTokenPolling(interval);
-      startMetricsPolling(interval);
-    }
-
-    return () => {
-      stopTokenPolling();
-      stopMetricsPolling();
-    };
-  }, [tokenData?.token, startTokenPolling, stopTokenPolling, startMetricsPolling, stopMetricsPolling]);
-
-  // Pause polling when tab is not visible
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        stopTokenPolling();
-        stopMetricsPolling();
-      } else {
-        startTokenPolling(pollingInterval);
-        startMetricsPolling(pollingInterval);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [pollingInterval, startTokenPolling, stopTokenPolling, startMetricsPolling, stopMetricsPolling]);
 
   const refetch = () => {
     refetchToken();

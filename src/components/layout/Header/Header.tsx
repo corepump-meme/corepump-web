@@ -6,12 +6,15 @@ import Navigation from './Navigation';
 import MobileMenuButton from './MobileMenuButton';
 import { WalletConnectButton } from '../../defi/WalletConnectButton';
 import { useWallet } from '../../../hooks/useWallet';
+import { useIsHydrated } from '../../../hooks/useIsHydrated';
 
 export interface HeaderProps {
   className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
+  const isHydrated = useIsHydrated();
+  
   const {
     isConnected,
     address,
@@ -46,9 +49,9 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <div className="flex items-center gap-4">
             <MobileMenuButton />
             <WalletConnectButton
-              isConnected={isConnected}
-              address={address}
-              balance={balance}
+              isConnected={isHydrated ? isConnected : false}
+              address={isHydrated ? address : undefined}
+              balance={isHydrated ? balance : undefined}
               loading={isPending}
               onConnect={connectWallet}
               onDisconnect={disconnect}

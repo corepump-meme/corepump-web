@@ -257,6 +257,18 @@ export function TradingChart({
     setInterval(newInterval);
   }, []);
 
+  // Listen for centralized data updates
+  useEffect(() => {
+    const handleTokenDataUpdate = (event: CustomEvent) => {
+      if (event.detail?.tokenAddress === tokenAddress) {
+        refresh();
+      }
+    };
+
+    window.addEventListener('tokenDataUpdated', handleTokenDataUpdate as EventListener);
+    return () => window.removeEventListener('tokenDataUpdated', handleTokenDataUpdate as EventListener);
+  }, [tokenAddress, refresh]);
+
   // Calculate total volume for legend
   const totalVolume = volumes.reduce((sum, vol) => sum + vol.value, 0);
 

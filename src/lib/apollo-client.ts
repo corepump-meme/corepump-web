@@ -26,15 +26,58 @@ export const apolloClient = new ApolloClient({
         },
       },
       Token: {
+        keyFields: ['id'],
         fields: {
           trades: {
-            merge(existing = [], incoming) {
-              return [...existing, ...incoming];
+            keyArgs: false,
+            merge(existing = [], incoming = []) {
+              // Use Map to deduplicate by trade ID
+              const tradeMap = new Map();
+              
+              // Add existing trades
+              existing.forEach((trade: any) => {
+                if (trade?.id) {
+                  tradeMap.set(trade.id, trade);
+                }
+              });
+              
+              // Add incoming trades (overwrite existing ones)
+              incoming.forEach((trade: any) => {
+                if (trade?.id) {
+                  tradeMap.set(trade.id, trade);
+                }
+              });
+              
+              // Convert back to array sorted by timestamp (most recent first)
+              return Array.from(tradeMap.values()).sort((a: any, b: any) => {
+                return parseInt(b.timestamp) - parseInt(a.timestamp);
+              });
             },
           },
           holders: {
-            merge(existing = [], incoming) {
-              return [...existing, ...incoming];
+            keyArgs: false,
+            merge(existing = [], incoming = []) {
+              // Use Map to deduplicate by holder address
+              const holderMap = new Map();
+              
+              // Add existing holders
+              existing.forEach((holder: any) => {
+                if (holder?.holder) {
+                  holderMap.set(holder.holder, holder);
+                }
+              });
+              
+              // Add incoming holders (overwrite existing ones)
+              incoming.forEach((holder: any) => {
+                if (holder?.holder) {
+                  holderMap.set(holder.holder, holder);
+                }
+              });
+              
+              // Convert back to array sorted by balance (largest first)
+              return Array.from(holderMap.values()).sort((a: any, b: any) => {
+                return parseFloat(b.balance) - parseFloat(a.balance);
+              });
             },
           },
         },
@@ -44,9 +87,11 @@ export const apolloClient = new ApolloClient({
   defaultOptions: {
     watchQuery: {
       errorPolicy: 'all',
+      notifyOnNetworkStatusChange: false, // Prevent loading flicker
     },
     query: {
       errorPolicy: 'all',
+      notifyOnNetworkStatusChange: false,
     },
   },
 });

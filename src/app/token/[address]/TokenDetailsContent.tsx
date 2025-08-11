@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useTokenData } from '@/hooks/useTokenData';
+import React, { useState, useCallback } from 'react';
+import { useTokenPagePolling } from '@/hooks/useTokenPagePolling';
 import { useWallet } from '@/hooks/useWallet';
 import { useReadContract } from 'wagmi';
 import { ERC20_ABI } from '@/lib/contracts';
@@ -228,7 +228,17 @@ function TokenInfoTab({ token }: { token: Token }) {
 
 export function TokenDetailsContent({ address }: TokenDetailsContentProps) {
   const [activeTab, setActiveTab] = useState('trades');
-  const { token, metrics, holders, recentTrades, loading, error } = useTokenData(address);
+  
+  // Handle trade completion to refresh data
+  const handleTradeComplete = useCallback(() => {
+    // This will be called after successful trades to refresh token data
+  }, []);
+
+  const { token, metrics, holders, recentTrades, loading, error, refresh } = useTokenPagePolling({
+    tokenAddress: address,
+    onTradeComplete: handleTradeComplete
+  });
+  
   const { address: userAddress } = useWallet();
 
   // Get user token balance

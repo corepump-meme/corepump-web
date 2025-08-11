@@ -4,6 +4,7 @@ import React from 'react';
 import { FiCreditCard, FiPower, FiCopy } from 'react-icons/fi';
 import { Button } from '../../ui/Button';
 import { IconButton } from '../../ui/IconButton';
+import { useIsHydrated } from '../../../hooks/useIsHydrated';
 
 export interface WalletConnectButtonProps {
   isConnected?: boolean;
@@ -32,9 +33,14 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
   hideBalance = false,
   headerMode = false
 }) => {
+  const isHydrated = useIsHydrated();
+  
   // Header mode enables multiple compact features
   const isCompact = compact || headerMode;
   const shouldHideBalance = hideBalance || headerMode;
+  
+  // Only show connected state after hydration to prevent SSR mismatch
+  const showConnectedState = isHydrated && isConnected && address;
 
   const formatAddress = (addr: string, isCompactMode: boolean = false) => {
     if (!addr) return '';
@@ -52,7 +58,7 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
     return num.toFixed(3);
   };
 
-  if (isConnected && address) {
+  if (showConnectedState) {
     const gapClass = isCompact ? 'gap-2' : 'gap-3';
     const containerPadding = isCompact ? 'px-2 py-1' : 'px-4 py-2';
     const statusDotSize = isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2';
