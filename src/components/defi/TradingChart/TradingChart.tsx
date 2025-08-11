@@ -84,7 +84,7 @@ export function TradingChart({
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   
-  const [interval, setInterval] = useState<Interval>('5m');
+  const [interval, setInterval] = useState<Interval>('1d');
   const [isDark, setIsDark] = useState(false);
 
   // Get chart data

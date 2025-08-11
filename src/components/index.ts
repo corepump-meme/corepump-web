@@ -18,3 +18,4 @@ export * from './defi/ImageUpload';
 export * from './defi/TokenLaunchForm';
 export * from './defi/TokenList';
 export * from './defi/TradingChart';
+export * from './defi/TickerTape';
