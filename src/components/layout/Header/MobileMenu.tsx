@@ -108,7 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ className = '' }) => {
                     <Link
                       href={item.href}
                       className={`
-                        block w-full text-left px-4 py-3 rounded-lg text-base font-medium
+                        w-full text-left px-4 py-3 rounded-lg text-base font-medium
                         transition-all duration-200 min-h-[44px] flex items-center
                         focus:outline-none focus:ring-2 focus:ring-core-orange-500/20
                         ${

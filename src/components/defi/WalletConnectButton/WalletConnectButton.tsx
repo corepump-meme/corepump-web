@@ -63,7 +63,7 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
     const containerPadding = isCompact ? 'px-2 py-1' : 'px-4 py-2';
     const statusDotSize = isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2';
     const textSize = isCompact ? 'text-xs' : 'text-sm';
-    const iconButtonSize = isCompact ? '' : 'sm';
+    const iconButtonSize = isCompact ? 'none' : 'sm';
 
     return (
       <div className={`flex items-center ${gapClass} ${className}`}>
