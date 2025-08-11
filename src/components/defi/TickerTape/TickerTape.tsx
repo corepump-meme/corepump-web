@@ -43,19 +43,19 @@ export function TickerTape({ className = '' }: TickerTapeProps) {
       className={`
         relative w-full z-20
         h-10 overflow-hidden
-        bg-white/95 backdrop-blur-md
-        border-b border-gray-200
+        bg-white/95 dark:bg-black/95 backdrop-blur-md
+        border-b border-gray-200 dark:border-white/10
         ${className}
       `}
     >
       {/* Gradient overlays for edge fade effect */}
-      <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white/95 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white/95 to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white/95 dark:from-black/95 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white/95 dark:from-black/95 to-transparent z-10 pointer-events-none" />
       
       {/* Loading state */}
       {loading && activities.length === 0 && (
         <div className="flex items-center justify-center h-full">
-          <div className="flex items-center gap-2 text-gray-600">
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
             <div className="w-3 h-3 border border-core-orange-500 border-t-transparent rounded-full animate-spin" />
             <span className="text-xs font-medium">Loading...</span>
           </div>
@@ -92,7 +92,7 @@ export function TickerTape({ className = '' }: TickerTapeProps) {
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-gray-800 rounded-full opacity-40"
+            className="absolute w-0.5 h-0.5 bg-gray-800 dark:bg-white rounded-full opacity-40"
             style={{
               left: `${25 + i * 25}%`,
               top: `${30 + (i % 2) * 40}%`,
