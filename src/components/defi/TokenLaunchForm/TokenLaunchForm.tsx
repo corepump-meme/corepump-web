@@ -56,25 +56,25 @@ export function TokenLaunchForm() {
   // Features data with exact existing color schemes
   const features = [
     {
-      icon: FiShield,
-      title: "Anti-Rug Protection",
-      description: "Ownership renounced, LP tokens burned automatically",
+      icon: FiTrendingUp,
+      title: "Dynamic Supply Stability",
+      description: "Algorithmic minting/burning responds to market demand",
       bgGradient: "bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10",
       borderColor: "border-core-orange-200 dark:border-core-orange-500/30",
       iconBg: "bg-core-orange-500"
     },
     {
-      icon: FiTrendingUp,
-      title: "Fair Launch",
-      description: "4% max purchase limit, bonding curve pricing",
+      icon: FiShield,
+      title: "Stability Pools",
+      description: "10% of funds create automated price stabilization",
       bgGradient: "bg-gradient-to-br from-success-50 to-info-50 dark:from-success-500/10 dark:to-info-500/10",
       borderColor: "border-success-200 dark:border-dark-success-border",
       iconBg: "bg-success-500 dark:bg-dark-success"
     },
     {
       icon: FiZap,
-      title: "Auto Graduation",
-      description: "Graduates to DEX at $50K market cap",
+      title: "Progressive Decentralization",
+      description: "3-phase governance evolution builds trust over time",
       bgGradient: "bg-gradient-to-br from-bitcoin-gold-50 to-warning-50 dark:from-bitcoin-gold-500/10 dark:to-warning-500/10",
       borderColor: "border-bitcoin-gold-200 dark:border-bitcoin-gold-500/30",
       iconBg: "bg-bitcoin-gold-500"
@@ -191,7 +191,7 @@ export function TokenLaunchForm() {
           Launch Your Token
         </h1>
         <p className="text-xl text-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto">
-          Create a fair launch token with built-in anti-rug protection on Core Chain
+          Launch tokens with dynamic supply stability mechanisms and algorithmic price stabilization
         </p>
       </div>
 
@@ -345,21 +345,29 @@ export function TokenLaunchForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-surface-hover dark:bg-dark-surface-hover rounded-lg p-4 border border-border-secondary/50 dark:border-dark-border-secondary/50">
-                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Total Supply</h4>
-                <p className="text-2xl font-mono font-bold text-text-primary dark:text-dark-text-primary">1,000,000,000</p>
-                <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Fixed supply, no inflation</p>
+                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Dynamic Supply Model</h4>
+                <p className="text-2xl font-mono font-bold text-text-primary dark:text-dark-text-primary">1B</p>
+                <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Base supply at launch</p>
+                <div className="space-y-1 text-xs text-text-tertiary dark:text-dark-text-tertiary mt-2">
+                  <div>Max: 10B (10x expansion)</div>
+                  <div>Min: 100M (10x contraction)</div>
+                </div>
               </div>
 
               <div className="bg-surface-hover dark:bg-dark-surface-hover rounded-lg p-4 border border-border-secondary/50 dark:border-dark-border-secondary/50">
-                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Initial Distribution</h4>
+                <h4 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">Fund Allocation</h4>
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-text-secondary dark:text-dark-text-secondary">Bonding Curve:</span>
-                    <span className="font-medium text-text-primary dark:text-dark-text-primary">80%</span>
+                    <span className="text-text-secondary dark:text-dark-text-secondary">DEX Liquidity:</span>
+                    <span className="font-medium text-text-primary dark:text-dark-text-primary">60%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-text-secondary dark:text-dark-text-secondary">Reserved:</span>
-                    <span className="font-medium text-text-primary dark:text-dark-text-primary">20%</span>
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Stability Pool:</span>
+                    <span className="font-medium text-text-primary dark:text-dark-text-primary">10%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Creator + Treasury:</span>
+                    <span className="font-medium text-text-primary dark:text-dark-text-primary">30%</span>
                   </div>
                 </div>
               </div>
@@ -382,10 +390,11 @@ export function TokenLaunchForm() {
             <div className="bg-white/50 dark:bg-dark-surface/50 rounded-lg p-4 border border-white/20 dark:border-dark-border-secondary/20">
               <h5 className="font-medium text-text-primary dark:text-dark-text-primary mb-2">What you get:</h5>
               <ul className="text-sm text-text-secondary dark:text-dark-text-secondary space-y-1">
-                <li>• Immutable smart contract deployment</li>
-                <li>• Built-in anti-rug protection</li>
-                <li>• Bonding curve price discovery</li>
-                <li>• Automatic DEX graduation</li>
+                <li>• Dynamic supply stability mechanisms</li>
+                <li>• Algorithmic price stabilization</li>
+                <li>• Dedicated stability pool (10% of funds)</li>
+                <li>• Progressive decentralization timeline</li>
+                <li>• Milestone-based whale vesting</li>
                 <li>• Platform listing and promotion</li>
               </ul>
             </div>

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
-  title: 'Token Rankings | CorePump - Fair Token Launchpad on Core Chain',
-  description: 'Discover trending tokens, top performers, and community favorites on CorePump. Track volume, market cap, and trading activity.',
+  title: 'Token Rankings | CorePump - True Stability Protocol on Core Chain',
+  description: 'Discover trending stable tokens with dynamic supply mechanisms. Track stability performance, volume, market cap, and community engagement.',
 };
 
 export default function RankingsPage() {
@@ -16,7 +16,7 @@ export default function RankingsPage() {
             Token Rankings
           </h1>
           <p className="text-xl text-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto">
-            Discover the hottest tokens on CorePump. Track performance, volume, and community engagement.
+            Discover the most stable tokens with dynamic supply mechanisms. Track stability performance, volume, and community engagement.
           </p>
         </div>
 

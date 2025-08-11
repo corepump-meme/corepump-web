@@ -234,7 +234,7 @@ export function TokenDetailsContent({ address }: TokenDetailsContentProps) {
     // This will be called after successful trades to refresh token data
   }, []);
 
-  const { token, metrics, holders, recentTrades, loading, error, refresh } = useTokenPagePolling({
+  const { token, metrics, holders, recentTrades, loading, error } = useTokenPagePolling({
     tokenAddress: address,
     onTradeComplete: handleTradeComplete
   });

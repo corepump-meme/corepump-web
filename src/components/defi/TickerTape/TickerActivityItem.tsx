@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { TickerActivity } from './hooks/useTickerData';
 import { formatBigIntToFixed } from '@/lib/bigint-utils';
+import Image from 'next/image';
 
 interface TickerActivityItemProps {
   activity: TickerActivity;
@@ -11,7 +12,7 @@ interface TickerActivityItemProps {
 }
 
 export function TickerActivityItem({ activity, index }: TickerActivityItemProps) {
-  const { type, token, isBuy, coreAmount, creator } = activity;
+  const { type, token, isBuy, coreAmount } = activity;
 
   // Determine colors and styles based on activity type
   const getActivityStyles = () => {
@@ -112,9 +113,11 @@ export function TickerActivityItem({ activity, index }: TickerActivityItemProps)
         {/* Token Image */}
         <div className="flex-shrink-0 relative">
           {token.image ? (
-            <img
+            <Image
               src={token.image}
               alt={token.name}
+              width={20}
+              height={20}
               className="w-5 h-5 rounded-full object-cover ring-1 ring-white/20"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';

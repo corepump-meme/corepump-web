@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { TokenLaunchForm, LoadingSpinner } from '@/components';
 
 export const metadata = {
-  title: 'Launch Token | CorePump - Fair Token Launchpad on Core Chain',
-  description: 'Launch your own token with built-in anti-rug protection, fair distribution, and automatic DEX graduation on Core Chain.',
+  title: 'Launch Token | CorePump - True Stability Protocol on Core Chain',
+  description: 'Launch your own token with dynamic supply stability mechanisms, algorithmic price stabilization, and progressive decentralization on Core Chain.',
 };
 
 export default function LaunchPage() {

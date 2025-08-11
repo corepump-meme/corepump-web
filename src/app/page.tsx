@@ -9,12 +9,12 @@ export default function Home() {
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-core-orange-500 mb-6 transition-colors duration-200">
-            The First Meme Fair Launchpad on{' '}
+            The True Stability Protocol on{' '}
             <Image src="/core.png" alt="Core Logo" width={180} height={50} className="inline-block dark:hidden object-contain" />
             <Image src="/core-light.png" alt="Core Logo" width={180} height={50} className="hidden dark:inline-block object-contain" />
           </h1>
           <p className="text-xl text-gray-600 dark:text-dark-text-secondary max-w-3xl mx-auto mb-8 transition-colors duration-200">
-            A launchpad on Core Chain with an on-chain defense system against dumps, monopolies, and rugs.
+            The first platform where meme tokens maintain stable prices through smart algorithms that prevent crashes and protect your investments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
