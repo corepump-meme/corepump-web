@@ -224,7 +224,7 @@ export const useChartData = ({
         priceChange: undefined,
       });
     }
-  }, [ohlcData, tradesData, latestPriceData, interval, getTimeRange]);
+  }, [ohlcData, tradesData, latestPriceData, interval, getTimeRange, ohlcLoading, tradesLoading]);
 
   // Auto-update effect - much less aggressive polling
   useEffect(() => {

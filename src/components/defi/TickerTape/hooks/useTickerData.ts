@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { TOKEN_CORE_FRAGMENT } from '@/queries/fragments/token-fragments';
+import { Token, Trade } from '@/types/graphql';
 
 // Query for recent activities (trades and token creations)
 const GET_TICKER_ACTIVITIES = gql`
@@ -48,7 +49,7 @@ export interface TickerActivity {
     id: string;
     name: string;
     symbol: string;
-    image?: string;
+    image?: string | null;
   };
   // For trades
   isBuy?: boolean;
@@ -81,7 +82,7 @@ export function useTickerData() {
 
     // Add token creations
     if (data.tokens) {
-      data.tokens.forEach((token: any) => {
+      data.tokens.forEach((token: Token) => {
         activities.push({
           id: `creation-${token.id}`,
           type: 'creation',
@@ -99,7 +100,7 @@ export function useTickerData() {
 
     // Add trades
     if (data.trades) {
-      data.trades.forEach((trade: any) => {
+      data.trades.forEach((trade: Trade) => {
         activities.push({
           id: `trade-${trade.id}`,
           type: 'trade',

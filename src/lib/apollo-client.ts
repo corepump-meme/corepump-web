@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { Trade, TokenHolder } from '@/types/graphql';
 
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV === 'production' 
@@ -35,21 +36,21 @@ export const apolloClient = new ApolloClient({
               const tradeMap = new Map();
               
               // Add existing trades
-              existing.forEach((trade: any) => {
+              existing.forEach((trade: Trade) => {
                 if (trade?.id) {
                   tradeMap.set(trade.id, trade);
                 }
               });
               
               // Add incoming trades (overwrite existing ones)
-              incoming.forEach((trade: any) => {
+              incoming.forEach((trade: Trade) => {
                 if (trade?.id) {
                   tradeMap.set(trade.id, trade);
                 }
               });
               
               // Convert back to array sorted by timestamp (most recent first)
-              return Array.from(tradeMap.values()).sort((a: any, b: any) => {
+              return Array.from(tradeMap.values()).sort((a: Trade, b: Trade) => {
                 return parseInt(b.timestamp) - parseInt(a.timestamp);
               });
             },
@@ -61,21 +62,21 @@ export const apolloClient = new ApolloClient({
               const holderMap = new Map();
               
               // Add existing holders
-              existing.forEach((holder: any) => {
+              existing.forEach((holder: TokenHolder) => {
                 if (holder?.holder) {
                   holderMap.set(holder.holder, holder);
                 }
               });
               
               // Add incoming holders (overwrite existing ones)
-              incoming.forEach((holder: any) => {
+              incoming.forEach((holder: TokenHolder) => {
                 if (holder?.holder) {
                   holderMap.set(holder.holder, holder);
                 }
               });
               
               // Convert back to array sorted by balance (largest first)
-              return Array.from(holderMap.values()).sort((a: any, b: any) => {
+              return Array.from(holderMap.values()).sort((a: TokenHolder, b: TokenHolder) => {
                 return parseFloat(b.balance) - parseFloat(a.balance);
               });
             },

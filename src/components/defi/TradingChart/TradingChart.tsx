@@ -187,7 +187,7 @@ export function TradingChart({
       }
       setChartInitialized(false);
     };
-  }, [hasData, height, isDark, loading]);
+  }, [hasData, height, isDark, loading, chartInitialized]);
 
   // Update chart data
   useEffect(() => {

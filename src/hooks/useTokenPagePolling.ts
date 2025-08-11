@@ -77,7 +77,7 @@ export const useTokenPagePolling = ({
         pollingIntervalRef.current = null;
       }
     };
-  }, [enabled, tokenAddress, tokenDataResult.token?.graduated, refresh]);
+  }, [enabled, tokenAddress, tokenDataResult.token, refresh]);
 
   // Pause polling when page is not visible
   useEffect(() => {
