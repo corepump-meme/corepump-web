@@ -86,6 +86,7 @@ export function TradingChart({
   
   const [interval, setInterval] = useState<Interval>('1d');
   const [isDark, setIsDark] = useState(false);
+  const [chartInitialized, setChartInitialized] = useState(false);
 
   // Get chart data
   const {
@@ -122,9 +123,9 @@ export function TradingChart({
     return () => observer.disconnect();
   }, []);
 
-  // Initialize chart
+  // Initialize chart only when data is available for the first time
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (!chartContainerRef.current || !hasData || chartInitialized || loading) return;
 
     // Create chart
     const chart = createChart(chartContainerRef.current, {
@@ -161,6 +162,7 @@ export function TradingChart({
     chartRef.current = chart;
     candlestickSeriesRef.current = candlestickSeries;
     volumeSeriesRef.current = volumeSeries;
+    setChartInitialized(true);
 
     // Handle resize
     const handleResize = () => {
@@ -183,8 +185,9 @@ export function TradingChart({
       if (chartRef.current) {
         chartRef.current.remove();
       }
+      setChartInitialized(false);
     };
-  }, [height, isDark]);
+  }, [hasData, height, isDark, loading]);
 
   // Update chart data
   useEffect(() => {
@@ -194,11 +197,17 @@ export function TradingChart({
       // Update candlestick data
       if (candlesticks.length > 0) {
         candlestickSeriesRef.current.setData(candlesticks);
+      } else {
+        // Clear stale data when no data available
+        candlestickSeriesRef.current.setData([]);
       }
 
       // Update volume data
       if (volumes.length > 0) {
         volumeSeriesRef.current.setData(volumes);
+      } else {
+        // Clear stale data when no data available
+        volumeSeriesRef.current.setData([]);
       }
 
       // Fit content to screen
@@ -354,12 +363,13 @@ export function TradingChart({
             </div>
           )}
 
-          {!hasData && !loading && (
+          {/* No Data State - Before any chart is initialized */}
+          {!chartInitialized && !hasData && !loading && (
             <div className="flex items-center justify-center bg-surface-hover dark:bg-dark-surface-hover rounded-lg border border-border-secondary/50 dark:border-dark-border-secondary/50" style={{ height }}>
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-surface-secondary dark:bg-dark-surface-secondary rounded-full flex items-center justify-center">
                   <svg className="w-8 h-8 text-text-tertiary dark:text-dark-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2-2z" />
                   </svg>
                 </div>
                 <p className="text-text-secondary dark:text-dark-text-secondary">
@@ -372,11 +382,33 @@ export function TradingChart({
             </div>
           )}
 
-          <div 
-            ref={chartContainerRef} 
-            style={{ height }}
-            className={`rounded-lg overflow-hidden ${!hasData || loading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-          />
+          {/* Chart Container with potential overlay */}
+          <div className="relative">
+            <div 
+              ref={chartContainerRef} 
+              style={{ height }}
+              className={`rounded-lg overflow-hidden ${!chartInitialized ? 'hidden' : 'block'} transition-opacity duration-300`}
+            />
+            
+            {/* Overlay for when chart exists but no data for current interval */}
+            {chartInitialized && !hasData && !loading && (
+              <div className="absolute inset-0 bg-white/90 dark:bg-dark-surface/90 z-20 flex items-center justify-center rounded-lg">
+                <div className="text-center">
+                  <div className="w-12 h-12 mx-auto mb-3 bg-surface-secondary dark:bg-dark-surface-secondary rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-text-tertiary dark:text-dark-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-text-secondary dark:text-dark-text-secondary">
+                    No data for {interval} interval
+                  </p>
+                  <p className="text-xs text-text-tertiary dark:text-dark-text-tertiary mt-1">
+                    Try a different time range
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Chart Footer */}
