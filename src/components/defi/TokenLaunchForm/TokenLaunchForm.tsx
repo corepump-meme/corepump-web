@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiGlobe, FiMessageCircle, FiTwitter, FiZap, FiShield, FiTrendingUp, FiExternalLink } from 'react-icons/fi';
 import { Button, Input, Card, Alert } from '@/components';
@@ -51,6 +51,35 @@ function SubmitButton({
 export function TokenLaunchForm() {
   const [imageUrl, setImageUrl] = useState<string>('');
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  // Features data with exact existing color schemes
+  const features = [
+    {
+      icon: FiShield,
+      title: "Anti-Rug Protection",
+      description: "Ownership renounced, LP tokens burned automatically",
+      bgGradient: "bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10",
+      borderColor: "border-core-orange-200 dark:border-core-orange-500/30",
+      iconBg: "bg-core-orange-500"
+    },
+    {
+      icon: FiTrendingUp,
+      title: "Fair Launch",
+      description: "4% max purchase limit, bonding curve pricing",
+      bgGradient: "bg-gradient-to-br from-success-50 to-info-50 dark:from-success-500/10 dark:to-info-500/10",
+      borderColor: "border-success-200 dark:border-dark-success-border",
+      iconBg: "bg-success-500 dark:bg-dark-success"
+    },
+    {
+      icon: FiZap,
+      title: "Auto Graduation",
+      description: "Graduates to DEX at $50K market cap",
+      bgGradient: "bg-gradient-to-br from-bitcoin-gold-50 to-warning-50 dark:from-bitcoin-gold-500/10 dark:to-warning-500/10",
+      borderColor: "border-bitcoin-gold-200 dark:border-bitcoin-gold-500/30",
+      iconBg: "bg-bitcoin-gold-500"
+    }
+  ];
   
   const router = useRouter();
   const {
@@ -78,6 +107,15 @@ export function TokenLaunchForm() {
       return () => clearTimeout(timer);
     }
   }, [isSuccess, tokenAddress, router]);
+
+  // Auto-advance carousel every 4 seconds on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveFeature((prev) => (prev + 1) % features.length);
+    }, 4000);
+    
+    return () => clearInterval(interval);
+  }, [features.length]);
 
   const validateForm = (data: TokenLaunchData): Record<string, string> => {
     const errors: Record<string, string> = {};
@@ -157,30 +195,60 @@ export function TokenLaunchForm() {
         </p>
       </div>
 
-      {/* Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="text-center p-6 bg-gradient-to-br from-core-orange-50 to-bitcoin-gold-50 dark:from-core-orange-500/10 dark:to-bitcoin-gold-500/10 rounded-xl border border-core-orange-200 dark:border-core-orange-500/30">
-          <div className="w-12 h-12 bg-core-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
-            <FiShield className="w-6 h-6 text-white" />
+      {/* Features Section - Mobile Carousel & Desktop Grid */}
+      <div className="mb-8">
+        {/* Mobile Carousel */}
+        <div className="block md:hidden">
+          <div className="relative">
+            {/* Active Feature Card */}
+            <div className={`text-center p-4 rounded-xl border transition-all duration-500 ${features[activeFeature].bgGradient} ${features[activeFeature].borderColor}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm ${features[activeFeature].iconBg}`}>
+                {React.createElement(features[activeFeature].icon, { className: "w-4 h-4 text-white" })}
+              </div>
+              <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-1 text-sm">
+                {features[activeFeature].title}
+              </h3>
+              <p className="text-xs text-text-secondary dark:text-dark-text-secondary leading-relaxed">
+                {features[activeFeature].description}
+              </p>
+            </div>
+            
+            {/* Navigation Dots */}
+            <div className="flex justify-center mt-3 gap-2">
+              {features.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveFeature(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === activeFeature
+                      ? 'bg-core-orange-500 dark:bg-core-orange-400'
+                      : 'bg-border-secondary dark:bg-dark-border-secondary'
+                  }`}
+                  aria-label={`Go to feature ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
-          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Anti-Rug Protection</h3>
-          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Ownership renounced, LP tokens burned automatically</p>
         </div>
 
-        <div className="text-center p-6 bg-gradient-to-br from-success-50 to-info-50 dark:from-success-500/10 dark:to-info-500/10 rounded-xl border border-success-200 dark:border-dark-success-border">
-          <div className="w-12 h-12 bg-success-500 dark:bg-dark-success rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
-            <FiTrendingUp className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Fair Launch</h3>
-          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">4% max purchase limit, bonding curve pricing</p>
-        </div>
-
-        <div className="text-center p-6 bg-gradient-to-br from-bitcoin-gold-50 to-warning-50 dark:from-bitcoin-gold-500/10 dark:to-warning-500/10 rounded-xl border border-bitcoin-gold-200 dark:border-bitcoin-gold-500/30">
-          <div className="w-12 h-12 bg-bitcoin-gold-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
-            <FiZap className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">Auto Graduation</h3>
-          <p className="text-sm text-text-secondary dark:text-dark-text-secondary">Graduates to DEX at $50K market cap</p>
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className={`text-center p-6 rounded-xl border ${feature.bgGradient} ${feature.borderColor}`}
+            >
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm ${feature.iconBg}`}>
+                {React.createElement(feature.icon, { className: "w-6 h-6 text-white" })}
+              </div>
+              <h3 className="font-semibold text-text-primary dark:text-dark-text-primary mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-sm text-text-secondary dark:text-dark-text-secondary">
+                {feature.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
