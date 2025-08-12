@@ -184,10 +184,12 @@ export function TradingChart({
       }
       if (chartRef.current) {
         chartRef.current.remove();
+        chartRef.current = null;
       }
-      setChartInitialized(false);
+      candlestickSeriesRef.current = null;
+      volumeSeriesRef.current = null;
     };
-  }, [hasData, height, isDark, loading, chartInitialized]);
+  }, [hasData, height, isDark, loading]);
 
   // Update chart data
   useEffect(() => {
@@ -256,6 +258,15 @@ export function TradingChart({
   const handleIntervalChange = useCallback((newInterval: Interval) => {
     setInterval(newInterval);
   }, []);
+
+  // Reset chart state when token changes
+  useEffect(() => {
+    setChartInitialized(false);
+    // Clear chart references
+    chartRef.current = null;
+    candlestickSeriesRef.current = null;
+    volumeSeriesRef.current = null;
+  }, [tokenAddress]);
 
   // Listen for centralized data updates
   useEffect(() => {
